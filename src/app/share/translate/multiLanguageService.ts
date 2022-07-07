@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 import { HttpClient } from "@angular/common/http";
 import { LangChangeEvent } from "@ngx-translate/core/lib/translate.service";
-import { environment } from "@environments/environment.dev";
+import { environment } from "@environments/environment";
 
 @Injectable({ providedIn: "root" })
 export class MultiLanguageService {

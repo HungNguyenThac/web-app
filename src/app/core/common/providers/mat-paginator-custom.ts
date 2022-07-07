@@ -1,23 +1,23 @@
-import { Injectable } from '@angular/core';
-import { MatPaginatorIntl } from '@angular/material/paginator';
-import { MultiLanguageService } from '../../../share/translate/multiLanguageService';
+import { Injectable } from "@angular/core";
+import { MatPaginatorIntl } from "@angular/material/paginator";
+import { MultiLanguageService } from "@app/share/translate/multiLanguageService";
 
 @Injectable()
 export class CustomMatPaginatorIntl extends MatPaginatorIntl {
-  itemsPerPageLabel = 'Item per page';
-  firstPageLabel = 'First page';
-  lastPageLabel = 'Last page';
-  nextPageLabel = 'Next page';
-  previousPageLabel = 'Previous page';
+  override itemsPerPageLabel = "Item per page";
+  override firstPageLabel = "First page";
+  override lastPageLabel = "Last page";
+  override nextPageLabel = "Next page";
+  override previousPageLabel = "Previous page";
 
   constructor(private translate: MultiLanguageService) {
     super();
     this.translateLabels();
   }
 
-  getRangeLabel = (page, pageSize, length) => {
+  override getRangeLabel = (page: number, pageSize: number, length: number) => {
     if (length === 0 || pageSize === 0) {
-      return this.translate.instant('mat_paginator_intl.page_per_total_label', {
+      return this.translate.instant("mat_paginator_intl.page_per_total_label", {
         page: 1,
         total: 1,
       });
@@ -31,7 +31,7 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
     //     : startIndex + pageSize;
     const totalPage = Math.ceil(length / pageSize);
 
-    return this.translate.instant('mat_paginator_intl.page_per_total_label', {
+    return this.translate.instant("mat_paginator_intl.page_per_total_label", {
       page: page + 1,
       total: totalPage,
     });
@@ -49,15 +49,15 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
 
   translateLabels() {
     this.itemsPerPageLabel = this.translate.instant(
-      'mat_paginator_intl.items_per_page'
+      "mat_paginator_intl.items_per_page"
     );
     this.firstPageLabel = this.translate.instant(
-      'mat_paginator_intl.first_page'
+      "mat_paginator_intl.first_page"
     );
-    this.lastPageLabel = this.translate.instant('mat_paginator_intl.last_page');
-    this.nextPageLabel = this.translate.instant('mat_paginator_intl.next_page');
+    this.lastPageLabel = this.translate.instant("mat_paginator_intl.last_page");
+    this.nextPageLabel = this.translate.instant("mat_paginator_intl.next_page");
     this.previousPageLabel = this.translate.instant(
-      'mat_paginator_intl.previous_page'
+      "mat_paginator_intl.previous_page"
     );
   }
 }

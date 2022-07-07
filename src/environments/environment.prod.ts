@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  PRODUCTION: true,
+  DEFAULT_LANGUAGE: "vi",
+  DEFAULT_TIMEOUT: 10000,
+  API_BASE_URL: "",
 };

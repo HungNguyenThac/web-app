@@ -6,6 +6,7 @@ import { AppComponent } from "@app/app.component";
 import { routes } from "@app/app-routing.module";
 import { ShareModule } from "@app/share/share.module";
 import { CoreModule } from "@core/core.module";
+import { CustomPreloadingStrategy } from "@core/common/providers/custom-preloading-strategy";
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,9 +15,12 @@ import { CoreModule } from "@core/core.module";
     BrowserModule,
     BrowserAnimationsModule,
     ShareModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {
+      relativeLinkResolution: "corrected",
+      preloadingStrategy: CustomPreloadingStrategy,
+    }),
   ],
-  providers: [],
+  providers: [CustomPreloadingStrategy],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

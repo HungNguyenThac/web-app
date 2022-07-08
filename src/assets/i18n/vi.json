@@ -1,1 +1,6 @@
-{}
+{
+  "common": {
+    "something_went_wrong": "Có gì đó không đúng",
+    "domain_went_wrong": "URL không đúng"
+  }
+}

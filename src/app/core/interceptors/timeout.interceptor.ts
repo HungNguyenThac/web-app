@@ -6,7 +6,6 @@ import {
   HttpRequest,
 } from "@angular/common/http";
 import { Observable } from "rxjs";
-import "rxjs/add/operator/do";
 import { timeout } from "rxjs/operators";
 
 export const DEFAULT_TIMEOUT = new InjectionToken<number>("defaultTimeout");

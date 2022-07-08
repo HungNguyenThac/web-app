@@ -1,4 +1,5 @@
 import * as loginActions from "../actions";
+import { loginSuccess } from "../actions";
 import { HttpErrorResponse } from "@angular/common/http";
 import jwt_decode from "jwt-decode";
 import { Token } from "../../../../public/models/auth/token.model";
@@ -15,20 +16,25 @@ export interface LoginState {
 }
 
 export const LOGIN_INITIAL_STATE: LoginState = {
-  authorization: {},
+  authorization: {
+    token: "",
+    authorities: [],
+    customerId: "",
+    exp: 0,
+  },
   loginProcess: "",
   loginError: null,
 };
 
 export const loginReducer = createReducer(
   LOGIN_INITIAL_STATE,
-  on(loginActions.signin, (state, { payload }) => ({
+  on(loginActions.loginSignin, (state, { payload }) => ({
     ...state,
     loginProcess: "Process login",
     customerMobile: payload.username,
   })),
 
-  on(loginActions.loginSuccess, (state, { payload }) => {
+  on(loginSuccess, (state, { payload }) => {
     if (
       !payload ||
       !payload.responseCode ||
@@ -52,7 +58,7 @@ export const loginReducer = createReducer(
     };
   }),
 
-  on(loginActions.logout, (state, { payload }) => ({
+  on(loginActions.logoutSignout, (state, { payload }) => ({
     ...state,
     loginProcess: "",
     loginError: null,

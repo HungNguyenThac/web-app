@@ -3,7 +3,7 @@ import { FooterComponent } from "@app/share/components/layout/footer/footer.comp
 import { MainLayoutComponent } from "@app/share/components/layout/main-layout/main-layout.component";
 import { SidebarComponent } from "@app/share/components/layout/sidebar/sidebar.component";
 
-export const components: any[] = [
+export const layout: any[] = [
   HeaderComponent,
   FooterComponent,
   MainLayoutComponent,

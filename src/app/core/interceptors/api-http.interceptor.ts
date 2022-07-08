@@ -27,14 +27,13 @@ import { Location } from "@angular/common";
 
 @Injectable()
 export class ApiHttpInterceptor implements HttpInterceptor {
-  // private accessToken$: Observable<string | undefined>;
+  private accessToken$: Observable<string | undefined>;
   private authorization = "";
 
   serverErrorStatusNotRetry = {
     BadRequest: 400,
     Unauthorized: 401,
     PermissionDenied: 403,
-    InternalServer: 500,
   };
 
   serverErrorStatusRetry = [408, 500, 502, 503, 504, 522, 524];
@@ -42,15 +41,15 @@ export class ApiHttpInterceptor implements HttpInterceptor {
   constructor(
     private _router: Router,
     private _location: Location,
-    // private _store: Store<{ accessToken: string }>,
+    private _store: Store<{ accessToken: string }>,
     private _loading: LoadingService,
     private _multiLanguageService: MultiLanguageService,
     private _notifier: ToastrService
   ) {
-    // this.accessToken$ = _store.select(fromSelectors.getTokenState);
-    // this.accessToken$.subscribe((token) => {
-    //   if (token) this.authorization = token;
-    // });
+    this.accessToken$ = _store.select(fromSelectors.getTokenState);
+    this.accessToken$.subscribe((token) => {
+      if (token) this.authorization = token;
+    });
   }
 
   intercept(
@@ -74,7 +73,10 @@ export class ApiHttpInterceptor implements HttpInterceptor {
     const clone = request.clone({ setHeaders: headers });
 
     // check domain
-    if (clone.url.startsWith(environment.API_BASE_URL) || clone.url.startsWith(environment.INCLUDE_PARAM)) {
+    if (
+      clone.url.startsWith(environment.API_BASE_URL) ||
+      clone.url.startsWith(environment.INCLUDE_PARAM)
+    ) {
       return next.handle(clone).pipe(
         catchError((error) => {
           if (error instanceof HttpErrorResponse)
@@ -116,12 +118,13 @@ export class ApiHttpInterceptor implements HttpInterceptor {
     // no retry on error
     switch (err.status) {
       case this.serverErrorStatusNotRetry.Unauthorized:
-        // this._store.dispatch(fromActions.logout({}));
+        this._store.dispatch(fromActions.logoutSignout({}));
         return of(this._router.navigate(["auth/sign-in"]));
       case this.serverErrorStatusNotRetry.BadRequest:
         return of(err);
       case this.serverErrorStatusNotRetry.PermissionDenied:
-        return of(this._location.back());
+        this._location.back();
+        return of(err);
       default:
         return of(err);
     }

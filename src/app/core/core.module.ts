@@ -9,6 +9,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { Storage } from "@core/utils/storage";
 import { GlobalConfig, ToastrModule } from "ngx-toastr";
 import { environment } from "@environments/environment";
+import { CoreStoreModule } from "@core/store";
 
 const customNotifierOptions: Partial<GlobalConfig> = {
   positionClass: "toast-bottom-right",
@@ -17,7 +18,7 @@ const customNotifierOptions: Partial<GlobalConfig> = {
 };
 
 export function tokenGetter() {
-  let coreState = JSON.parse(Storage.get("core"));
+  let coreState = Storage.get("core");
   return coreState?.login?.authorization?.token;
 }
 
@@ -25,6 +26,7 @@ export function tokenGetter() {
   declarations: [],
   imports: [
     CommonModule,
+    CoreStoreModule,
     ToastrModule.forRoot(customNotifierOptions),
     JwtModule.forRoot({
       config: {

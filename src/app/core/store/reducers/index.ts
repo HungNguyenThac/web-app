@@ -6,12 +6,12 @@ import * as fromLoginReducers from "./login.reducer";
 export * from "./router.reducer";
 
 // Feature by core module
-export interface State {
+export interface AppState {
   login: fromLoginReducers.LoginState;
   routerReducer: fromRouter.RouterReducerState<fromRouterReducers.RouterStateUrl>;
 }
 
-export const CORE_INITIAL_STATE: State = {
+export const CORE_INITIAL_STATE: AppState = {
   login: {
     authorization: {},
     loginProcess: "",
@@ -27,15 +27,7 @@ export const CORE_INITIAL_STATE: State = {
   },
 };
 
-export let reducers: ActionReducerMap<State>;
-reducers = {
+export const reducers: ActionReducerMap<AppState> = {
   login: fromLoginReducers.loginReducer,
   routerReducer: fromRouter.routerReducer,
 };
-
-export const getRouterState =
-  createFeatureSelector<
-    fromRouter.RouterReducerState<fromRouterReducers.RouterStateUrl>
-  >("routerReducer");
-
-export const getCoreState = createFeatureSelector<State>("core");

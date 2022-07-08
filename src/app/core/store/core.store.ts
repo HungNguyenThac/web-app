@@ -9,16 +9,18 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { storeLogger } from "ngrx-store-logger";
 import { localStorageSync } from "ngrx-store-localstorage";
 import { effects } from "./effects";
-import { CustomSerializer, reducers, State } from "./reducers";
+import { AppState, CustomSerializer, reducers } from "./reducers";
 import { environment } from "@environments/environment";
 
-export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
+export function logger(
+  reducer: ActionReducer<AppState>
+): ActionReducer<AppState> {
   return storeLogger()(reducer);
 }
 
 export function localStorageSyncReducer(
-  reducer: ActionReducer<State>
-): ActionReducer<State> {
+  reducer: ActionReducer<AppState>
+): ActionReducer<AppState> {
   return localStorageSync({
     keys: ["core"],
     rehydrate: true,
@@ -41,8 +43,9 @@ export const STORE_DEV_TOOLS: any[] | ModuleWithProviders<any> =
 @NgModule({
   imports: [
     StoreModule.forRoot({}, { metaReducers }),
-    EffectsModule.forRoot([]),
     StoreModule.forFeature("core", reducers),
+
+    EffectsModule.forRoot([]),
     EffectsModule.forFeature(effects),
     StoreRouterConnectingModule.forRoot(),
     STORE_DEV_TOOLS,

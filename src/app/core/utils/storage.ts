@@ -1,9 +1,9 @@
 export class Storage {
-  public static get(key: string, defaultValue: any = null): any {
+  public static get(key: string, defaultValue: string = ""): any {
     try {
-      let str = localStorage.getItem(key);
-      if (str == null) return defaultValue;
-      return JSON.parse(str);
+      let value = localStorage.getItem(key);
+      if (value == null) return defaultValue;
+      return JSON.parse(value);
     } catch (e) {
       return defaultValue;
     }

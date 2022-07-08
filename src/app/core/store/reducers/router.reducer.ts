@@ -1,7 +1,7 @@
 import {
   ActivatedRouteSnapshot,
-  RouterStateSnapshot,
   Params,
+  RouterStateSnapshot,
 } from "@angular/router";
 import * as fromRouter from "@ngrx/router-store";
 

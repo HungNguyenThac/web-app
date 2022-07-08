@@ -7,14 +7,17 @@ export const LOGIN_SIGNIN_SUCCESS = "@Login/signin/success";
 export const LOGIN_SIGN_OUT = "@Login/logout";
 export const LOGIN_RESET_TOKEN = "@Login/reset/token";
 
-export const signin = createAction(
+export const loginSignin = createAction(
   LOGIN_SIGNIN,
   props<{
     payload: LoginForm;
   }>()
 );
 
-export const logout = createAction(LOGIN_SIGN_OUT, props<{ payload?: any }>());
+export const logoutSignout = createAction(
+  LOGIN_SIGN_OUT,
+  props<{ payload?: any }>()
+);
 
 export const resetToken = createAction(
   LOGIN_RESET_TOKEN,
@@ -38,8 +41,8 @@ export const loginSuccess = createAction(
 );
 
 export type LoginActions =
-  | ActionType<typeof signin>
-  | ActionType<typeof logout>
+  | ActionType<typeof loginSignin>
+  | ActionType<typeof logoutSignout>
   | ActionType<typeof resetToken>
   | ActionType<typeof loginSuccess>
   | ActionType<typeof loginError>;

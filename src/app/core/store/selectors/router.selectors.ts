@@ -1,21 +1,25 @@
-import { createSelector } from "@ngrx/store";
-import { getRouterState, RouterStateUrl } from "../reducers";
-import * as fromFeature from "../reducers";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { RouterStateUrl } from "../reducers";
+import { RouterReducerState } from "@ngrx/router-store";
 
 /**
  * Selectors
  */
+
+export const getRouterState =
+  createFeatureSelector<RouterReducerState<RouterStateUrl>>("routerReducer");
+
 export const getRouterParams = createSelector(
-  fromFeature.getCoreState,
-  (state: fromFeature.State) => {
-    return state.routerReducer?.state?.params;
+  getRouterState,
+  (routerData: { state: RouterStateUrl; navigationId: number }) => {
+    return routerData.state.params;
   }
 );
 
 export const getRouterQueryParams = createSelector(
-  fromFeature.getCoreState,
-  (state: fromFeature.State) => {
-    return state.routerReducer?.state?.queryParams;
+  getRouterState,
+  (routerData: { state: RouterStateUrl; navigationId: number }) => {
+    return routerData.state.queryParams;
   }
 );
 
@@ -27,8 +31,8 @@ export const getRouterCurrentUrl = createSelector(
 );
 
 export const getRouterAllState = createSelector(
-  fromFeature.getCoreState,
-  (state: fromFeature.State) => {
-    return state.routerReducer?.state;
+  getRouterState,
+  (routerData: { state: RouterStateUrl; navigationId: number }) => {
+    return routerData.state;
   }
 );

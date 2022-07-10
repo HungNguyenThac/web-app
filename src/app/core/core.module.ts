@@ -8,7 +8,6 @@ import { HttpLoaderFactory } from "@app/share/translate/translate.factory";
 import { JwtModule } from "@auth0/angular-jwt";
 import { Storage } from "@core/utils/storage";
 import { GlobalConfig, ToastrModule } from "ngx-toastr";
-import { environment } from "@environments/environment";
 import { CoreStoreModule } from "@core/store";
 
 const customNotifierOptions: Partial<GlobalConfig> = {
@@ -31,7 +30,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: [environment.API_BASE_URL],
+        allowedDomains: ["http:localhost:4200"],
       },
     }),
     TranslateModule.forRoot({
@@ -45,7 +44,7 @@ export function tokenGetter() {
   providers: [providers],
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor(@Optional() @SkipSelf() parentModule?: CoreModule) {
     throwIfAlreadyLoaded(parentModule, "CoreModule");
   }
 }

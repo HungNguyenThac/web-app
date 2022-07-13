@@ -13,6 +13,7 @@ import {
   of,
   retryWhen,
   take,
+  tap,
   throwError,
 } from "rxjs";
 import { Router } from "@angular/router";
@@ -24,6 +25,7 @@ import { MultiLanguageService } from "@app/share/translate/multiLanguageService"
 import { ToastrService } from "ngx-toastr";
 import { LoadingService } from "@core/services/loading.service";
 import { Location } from "@angular/common";
+import { config } from "@core/common/constants/config";
 
 @Injectable()
 export class ApiHttpInterceptor implements HttpInterceptor {
@@ -57,26 +59,21 @@ export class ApiHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     console.log("HttpRequest", request);
+
     const headers = {
       Authorization: "",
     };
 
-    if (
-      (!request.url.includes("/v1/signOn") &&
-        !request.url.includes("/v1/credentials/getToken")) ||
-      request.url.includes("/v1/signOn/signOut")
-    ) {
-      headers["Authorization"] = `Bearer ${this.authorization}`;
-    }
-
-    // clone the request
-    const clone = request.clone({ setHeaders: headers });
-
     // check domain
     if (
-      clone.url.startsWith(environment.API_BASE_URL) ||
-      clone.url.startsWith(environment.INCLUDE_PARAM)
+      request.url.startsWith(environment.API_BASE_URL) ||
+      request.url.startsWith(environment.INCLUDE_PARAM)
     ) {
+      headers["Authorization"] = `Bearer ${this.authorization}`;
+
+      // set token
+      const clone = request.clone({ setHeaders: headers });
+
       return next.handle(clone).pipe(
         catchError((error) => {
           if (error instanceof HttpErrorResponse)
@@ -85,6 +82,7 @@ export class ApiHttpInterceptor implements HttpInterceptor {
           this._notifier.error(
             this._multiLanguageService.instant("common.something_went_wrong")
           );
+
           return of(null);
         })
       );
@@ -93,9 +91,7 @@ export class ApiHttpInterceptor implements HttpInterceptor {
         this._multiLanguageService.instant("common.something_went_wrong")
       );
 
-      return throwError(() =>
-        this._multiLanguageService.instant("common.domain_went_wrong")
-      );
+      return throwError(() => "Domain denied");
     }
   }
 
@@ -104,18 +100,25 @@ export class ApiHttpInterceptor implements HttpInterceptor {
     clone: HttpRequest<any>,
     next: HttpHandler
   ): Observable<any> {
-    this._notifier.error(err?.error?.message);
     this._loading.next(false);
 
-    // retry 3 time on error
+    // retry on error
     if (this.serverErrorStatusRetry.includes(err.status)) {
       return next.handle(clone).pipe(
-        retryWhen((errors) => errors.pipe(delay(1000), take(3))),
+        retryWhen((errors) =>
+          errors.pipe(
+            tap(() => this._notifier.error(err?.error?.message)),
+            delay(config.DELAY_TIME_RECALL_API),
+            take(config.RETRY_CALL_API)
+          )
+        ),
         catchError((err) => of(err))
       );
     }
 
     // no retry on error
+    this._notifier.error(err?.error?.message);
+
     switch (err.status) {
       case this.serverErrorStatusNotRetry.Unauthorized:
         this._store.dispatch(fromActions.logoutSignout({}));

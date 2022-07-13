@@ -3,7 +3,7 @@ import { loginSuccess } from "../actions";
 import { HttpErrorResponse } from "@angular/common/http";
 import jwt_decode from "jwt-decode";
 import { Token } from "../../../../public/models/auth/token.model";
-import { config } from "@core/common/constants/common";
+import { config } from "@core/common/constants/config";
 import { Auth } from "../../../../public/models";
 import { createReducer, on } from "@ngrx/store";
 
@@ -38,7 +38,7 @@ export const loginReducer = createReducer(
     if (
       !payload ||
       !payload.responseCode ||
-      payload.responseCode !== config.CODE.RESPONSE_CODE_SUCCESS
+      payload.responseCode !== config.RESPONSE_CODE_SUCCESS
     ) {
       return state;
     }
@@ -58,7 +58,7 @@ export const loginReducer = createReducer(
     };
   }),
 
-  on(loginActions.logoutSignout, (state, { payload }) => ({
+  on(loginActions.logoutSignout, (state) => ({
     ...state,
     loginProcess: "",
     loginError: null,
@@ -71,7 +71,7 @@ export const loginReducer = createReducer(
     loginProcess: "Login failed",
   })),
 
-  on(loginActions.resetToken, (state, { payload }) => ({
+  on(loginActions.resetToken, (state) => ({
     ...state,
     authorization: {},
   }))

@@ -28,9 +28,10 @@ export function localStorageSyncReducer(
   })(reducer);
 }
 
-export const metaReducers: Array<MetaReducer<any, any>> = environment.PRODUCTION
-  ? [localStorageSyncReducer]
-  : [logger, localStorageSyncReducer];
+export const metaReducers: Array<MetaReducer<any, any>> =
+  !environment.PRODUCTION
+    ? [localStorageSyncReducer]
+    : [logger, localStorageSyncReducer];
 
 export const STORE_DEV_TOOLS: any[] | ModuleWithProviders<any> =
   environment.PRODUCTION

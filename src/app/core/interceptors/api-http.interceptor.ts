@@ -67,7 +67,7 @@ export class ApiHttpInterceptor implements HttpInterceptor {
     // check domain
     if (
       request.url.startsWith(environment.API_BASE_URL) ||
-      request.url.startsWith(environment.INCLUDE_PARAM)
+      request.url.startsWith(environment.ASSETS_PATH)
     ) {
       headers["Authorization"] = `Bearer ${this.authorization}`;
 

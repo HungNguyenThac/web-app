@@ -3,7 +3,7 @@ export const environment = {
   DEFAULT_LANGUAGE: "vi",
   DEFAULT_TIMEOUT: 10000,
   API_BASE_URL: "http://localhost:4200/",
-  INCLUDE_PARAM: "./assets",
+  ASSETS_PATH: "./assets",
 
   BROWSER_TAB_TITLE_DELIMITER: " - ",
   PROJECT_NAME: "Base Angular Ngrx",

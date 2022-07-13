@@ -3,5 +3,5 @@ export const environment = {
   DEFAULT_LANGUAGE: "vi",
   DEFAULT_TIMEOUT: 10000,
   API_BASE_URL: "",
-  INCLUDE_PARAM: './assets'
+  ASSETS_PATH: "./assets",
 };

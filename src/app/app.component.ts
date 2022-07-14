@@ -16,7 +16,7 @@ import { environment } from "@environments/environment";
   animations: [routerFadeAnimation],
 })
 export class AppComponent implements OnInit {
-  title = "dashboard";
+  title = "Base Angular Ngrx";
   private routerState: Observable<AppState>;
 
   constructor(

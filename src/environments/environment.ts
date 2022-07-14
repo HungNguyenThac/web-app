@@ -4,7 +4,6 @@ export const environment = {
   DEFAULT_TIMEOUT: 10000,
   API_BASE_URL: "http://localhost:4200/",
   ASSETS_PATH: "./assets",
-
   BROWSER_TAB_TITLE_DELIMITER: " - ",
   PROJECT_NAME: "Base Angular Ngrx",
 };

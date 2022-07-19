@@ -6,4 +6,5 @@ export const config = {
   RETRY_CALL_API: 3, // retry 3 time on error
 
   DELAY_PRELOAD_STRATEGY: 5000,
+  DEBOUNCE_TIME_WINDOW_RESIZE: 200,
 };

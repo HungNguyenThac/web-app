@@ -14,10 +14,10 @@ export class WindowResizeService {
       fromEvent(window, "resize")
         .pipe(
           debounceTime(config.DEBOUNCE_TIME_WINDOW_RESIZE),
-          map((target) => (target.target as Window).innerWidth)
+          map((event: Event) => (event.target as Window).innerWidth)
         )
-        .subscribe((width) => {
-          this._windowWidth.next(width);
+        .subscribe((innerWidth) => {
+          this._windowWidth.next(innerWidth);
         })
     );
   }

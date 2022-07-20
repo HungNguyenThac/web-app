@@ -14,7 +14,7 @@ export class MultiLanguageService {
   private _languageList: string[] = ["vi", "en"];
 
   constructor(
-    private translateService: TranslateService,
+    public translateService: TranslateService,
     private http: HttpClient
   ) {}
 

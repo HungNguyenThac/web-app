@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(
     public jwtHelper: JwtHelperService,
-    private store: Store<fromStore.State>
+    private store: Store<fromStore.AppState>
   ) {
     this.accessToken$ = store.select(fromSelectors.getTokenState);
     this.accessToken$.subscribe((token) => {

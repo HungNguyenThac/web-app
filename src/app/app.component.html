@@ -1,7 +1,6 @@
-<main [@routerFadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+<main [@routerFadeAnimation]="o.isActivated ? o.activatedRouteData['animation'] : ''">
   <router-outlet  #o='outlet'></router-outlet>
 </main>
-<main [@routerFadeAnimation]="true">
-  <app-loading></app-loading>
-</main>
+<app-loading></app-loading>
+
 

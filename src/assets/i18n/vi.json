@@ -2,6 +2,9 @@
   "common": {
     "something_went_wrong": "Đã có lỗi xảy ra"
   },
+  "pages_title": {
+    "auth": "Đăng nhập"
+  },
   "mat_paginator_intl": {
     "items_per_page": "Số dòng một trang",
     "range_label": "{{range}} trên {{total}}",

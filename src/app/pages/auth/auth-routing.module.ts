@@ -1,16 +1,17 @@
 import { Routes } from "@angular/router";
 import { LoginSignInComponent } from "@app/pages/auth/login-sign-in/login-sign-in.component";
-import { PagesTitle } from "@core/common/constants/pages-title";
+import { pagesTitle } from "@core/common/constants/pages-title";
+import { configRoutes } from "@core/common/constants/routes-config";
 
 export const authRoutes: Routes = [
   {
-    path: "",
+    path: configRoutes.AUTH_ROUTING.PATH,
     children: [
       {
-        path: "sign-in",
+        path: configRoutes.AUTH_ROUTING.CHILDREN.LOGIN,
         component: LoginSignInComponent,
         data: {
-          title: PagesTitle.PagesTitle.auth,
+          title: pagesTitle.AUTH,
         },
       },
     ],

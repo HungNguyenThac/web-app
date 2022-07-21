@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { routerFadeAnimation } from "@core/common/animations/router.animation";
 import { Store } from "@ngrx/store";
 import { AppState, getCoreState } from "@core/store";
@@ -11,7 +11,7 @@ import { SetBrowserTitleService } from "@core/services/set-browser-title.service
   styleUrls: ["./app.component.scss"],
   animations: [routerFadeAnimation],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = "Base Angular Ngrx";
   private routerState: Observable<AppState>;
 
@@ -25,4 +25,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.setBrowserTitle.setBrowserTabTitle();
   }
+
+  ngAfterViewInit() {}
 }

@@ -7,12 +7,17 @@ import {
   UrlSegment,
 } from "@angular/router";
 import { AuthService } from "./auth.service";
+import { Location } from "@angular/common";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthGuardService implements CanActivate, CanLoad {
-  constructor(public auth: AuthService, public router: Router) {}
+  constructor(
+    public auth: AuthService,
+    public router: Router,
+    private _location: Location
+  ) {}
   canActivate(): boolean {
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(["auth/sign-in"]).then();
@@ -22,6 +27,10 @@ export class AuthGuardService implements CanActivate, CanLoad {
   }
 
   canLoad(route: Route, segments: UrlSegment[]): boolean {
-    return this.auth.isAuthenticated();
+    if (this.auth.isAuthenticated()) {
+      return true;
+    }
+    this._location.back();
+    return false;
   }
 }

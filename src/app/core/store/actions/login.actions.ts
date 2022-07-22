@@ -40,9 +40,9 @@ export const loginSuccess = createAction(
   }>()
 );
 
-export type LoginActions =
-  | ActionType<typeof loginSignin>
-  | ActionType<typeof logoutSignout>
-  | ActionType<typeof resetToken>
-  | ActionType<typeof loginSuccess>
-  | ActionType<typeof loginError>;
+// export type LoginActions =
+//   | ActionType<typeof loginSignin>
+//   | ActionType<typeof logoutSignout>
+//   | ActionType<typeof resetToken>
+//   | ActionType<typeof loginSuccess>
+//   | ActionType<typeof loginError>;

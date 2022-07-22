@@ -4,6 +4,7 @@ import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { MainLayoutComponent } from "./main-layout/main-layout.component";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { MainLayoutComponent } from "./main-layout/main-layout.component";
     SidebarComponent,
     MainLayoutComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   exports: [],
 })
 export class LayoutModule {}

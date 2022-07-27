@@ -9,6 +9,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { Storage } from "@core/utils/storage";
 import { GlobalConfig, ToastrModule } from "ngx-toastr";
 import { CoreStoreModule } from "@core/store";
+import { NgxPermissionsModule } from "ngx-permissions";
 
 const customNotifierOptions: Partial<GlobalConfig> = {
   positionClass: "toast-bottom-right",
@@ -40,6 +41,7 @@ export function tokenGetter() {
         deps: [HttpClient],
       },
     }),
+    NgxPermissionsModule.forRoot(),
   ],
   providers: [providers],
 })

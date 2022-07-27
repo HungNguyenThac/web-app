@@ -1,1 +1,1 @@
-export class PermissionConstants {}
+export const permissionConstants = {} as const;

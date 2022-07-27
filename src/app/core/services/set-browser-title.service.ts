@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { mergeMap } from "rxjs/operators";
 import { environment } from "@environments/environment";
 import { Title } from "@angular/platform-browser";
+import { config } from "@core/common/constants/config";
 
 @Injectable({
   providedIn: "root",
@@ -38,10 +39,10 @@ export class SetBrowserTitleService {
 
   private buildTitle(pageTitle: string): string {
     if (pageTitle) {
-      return [pageTitle, environment.PROJECT_NAME].join(
-        environment.BROWSER_TAB_TITLE_DELIMITER
+      return [pageTitle, config.PROJECT_NAME].join(
+        config.BROWSER_TAB_TITLE_DELIMITER
       );
     }
-    return environment.PROJECT_NAME;
+    return config.PROJECT_NAME;
   }
 }

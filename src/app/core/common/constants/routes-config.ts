@@ -1,7 +1,8 @@
-export const configRoutes: any = {
+export const configRoutes = {
   APP_ROUTING: {
     PATH: "",
     AUTH_ROUTING: "auth",
+    NOT_FOUND: "**",
   },
   AUTH_ROUTING: {
     PATH: "",
@@ -9,4 +10,4 @@ export const configRoutes: any = {
       LOGIN: "sign-in",
     },
   },
-};
+} as const;

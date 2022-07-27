@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import {
+  HttpClient,
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
@@ -12,6 +13,7 @@ import {
   Observable,
   of,
   retryWhen,
+  switchMap,
   take,
   tap,
   throwError,
@@ -46,7 +48,8 @@ export class ApiHttpInterceptor implements HttpInterceptor {
     private _store: Store<{ accessToken: string }>,
     private _loading: LoadingService,
     private _multiLanguageService: MultiLanguageService,
-    private _notifier: ToastrService
+    private _notifier: ToastrService,
+    private _http: HttpClient
   ) {
     this.accessToken$ = _store.select(fromSelectors.getTokenState);
     this.accessToken$.subscribe((token) => {
@@ -59,25 +62,26 @@ export class ApiHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     console.log("HttpRequest", request);
+    let cloneRequest: HttpRequest<any> = request.clone();
 
-    const headers = {
-      Authorization: "",
-    };
+    if (
+      !request.url.includes("/sign-in") ||
+      !request.url.includes("/refreshToken") ||
+      !request.url.includes("/get-token")
+    ) {
+      cloneRequest = cloneRequest.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.authorization}`,
+        },
+      });
+    }
 
     // check domain
-    if (
-      request.url.startsWith(environment.API_BASE_URL) ||
-      request.url.startsWith(environment.ASSETS_PATH)
-    ) {
-      headers["Authorization"] = `Bearer ${this.authorization}`;
-
-      // set token
-      const clone = request.clone({ setHeaders: headers });
-
-      return next.handle(clone).pipe(
+    if (cloneRequest.url.startsWith(environment.API_BASE_URL)) {
+      return next.handle(cloneRequest).pipe(
         catchError((error) => {
           if (error instanceof HttpErrorResponse)
-            return this._handleError(error, clone, next);
+            return this._handleError(error, cloneRequest, next);
 
           this._notifier.error(
             this._multiLanguageService.instant("common.something_went_wrong")
@@ -87,11 +91,7 @@ export class ApiHttpInterceptor implements HttpInterceptor {
         })
       );
     } else {
-      this._notifier.error(
-        this._multiLanguageService.instant("common.something_went_wrong")
-      );
-
-      return throwError(() => "Domain denied");
+      return next.handle(cloneRequest);
     }
   }
 
@@ -121,8 +121,12 @@ export class ApiHttpInterceptor implements HttpInterceptor {
 
     switch (err.status) {
       case this.serverErrorStatusNotRetry.Unauthorized:
-        this._store.dispatch(fromActions.logoutSignout({}));
-        return of(this._router.navigate(["auth/sign-in"]));
+        // no refresh token
+        // this._store.dispatch(fromActions.logoutSignOut({}));
+        // return of(this._router.navigate(["auth/sign-in"]));
+
+        // refresh token
+        return this._reFreshToken(clone, next);
       case this.serverErrorStatusNotRetry.BadRequest:
         return of(err);
       case this.serverErrorStatusNotRetry.PermissionDenied:
@@ -132,4 +136,27 @@ export class ApiHttpInterceptor implements HttpInterceptor {
         return of(err);
     }
   }
+
+  private _reFreshToken = (
+    clone: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<any> => {
+    return this._http
+      .post(
+        `${config.API_BASE_URL}/refresh-token`,
+        {},
+        { withCredentials: true }
+      )
+      .pipe(
+        switchMap((res: any) => {
+          this.authorization = res.Authorization;
+          clone = clone.clone({
+            setHeaders: {
+              Authorization: `Bearer ${this.authorization}`,
+            },
+          });
+          return next.handle(clone);
+        })
+      );
+  };
 }

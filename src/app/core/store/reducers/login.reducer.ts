@@ -28,7 +28,7 @@ export const LOGIN_INITIAL_STATE: LoginState = {
 
 export const loginReducer = createReducer(
   LOGIN_INITIAL_STATE,
-  on(loginActions.loginSignin, (state, { payload }) => ({
+  on(loginActions.loginSignIn, (state, { payload }) => ({
     ...state,
     loginProcess: "Process login",
     customerMobile: payload.username,
@@ -58,7 +58,7 @@ export const loginReducer = createReducer(
     };
   }),
 
-  on(loginActions.logoutSignout, (state) => ({
+  on(loginActions.logoutSignOut, (state) => ({
     ...state,
     loginProcess: "",
     loginError: null,

@@ -18,9 +18,7 @@ export class AuthService {
   ) {
     this.accessToken$ = store.select(fromSelectors.getTokenState);
     this.accessToken$.subscribe((token) => {
-      if (token) {
-        this.token = token;
-      }
+      if (token) this.token = token;
     });
   }
   // ...

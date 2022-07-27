@@ -18,6 +18,7 @@ import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { environment } from "@environments/environment";
 import { appInitializerFactory } from "@app/share/translate/appInitializerFactory";
 import { MultiLanguageService } from "@app/share/translate/multiLanguageService";
+import { config } from "@core/common/constants/config";
 
 export const providers = [
   MultiLanguageService,
@@ -64,5 +65,5 @@ export const providers = [
       separatorKeyCodes: [ENTER, COMMA],
     },
   },
-  { provide: DEFAULT_TIMEOUT, useValue: environment.DEFAULT_TIMEOUT },
+  { provide: DEFAULT_TIMEOUT, useValue: config.DEFAULT_TIMEOUT },
 ];

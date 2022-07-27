@@ -2,13 +2,14 @@ import { Routes } from "@angular/router";
 import { MainLayoutComponent } from "@app/layout/main-layout/main-layout.component";
 import { configRoutes } from "@core/common/constants/routes-config";
 import { AuthGuardService } from "@core/services/auth-guard.service";
+import { NotFoundComponent } from "@app/pages/Errors/not-found/not-found.component";
+import { pagesTitle } from "@core/common/constants/pages-title";
 
 export const routes: Routes = [
   {
     path: configRoutes.APP_ROUTING.PATH,
     component: MainLayoutComponent,
     data: {
-      animation: true,
       title: "Main Layout",
     },
   },
@@ -18,5 +19,12 @@ export const routes: Routes = [
       import("./pages/auth/auth.module").then((m) => m.AuthModule),
     data: { preload: true, delay: false },
     canLoad: [AuthGuardService],
+  },
+  {
+    path: configRoutes.APP_ROUTING.NOT_FOUND,
+    component: NotFoundComponent,
+    data: {
+      title: pagesTitle.NOT_FOUND,
+    },
   },
 ];

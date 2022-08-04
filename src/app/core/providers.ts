@@ -19,6 +19,7 @@ import { environment } from "@environments/environment";
 import { appInitializerFactory } from "@app/share/translate/appInitializerFactory";
 import { MultiLanguageService } from "@app/share/translate/multiLanguageService";
 import { config } from "@core/common/constants/config";
+import { MatDialogConfig } from "@angular/material/dialog";
 
 export const providers = [
   MultiLanguageService,
@@ -66,4 +67,5 @@ export const providers = [
     },
   },
   { provide: DEFAULT_TIMEOUT, useValue: config.DEFAULT_TIMEOUT },
+  MatDialogConfig,
 ];

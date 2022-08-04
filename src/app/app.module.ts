@@ -8,7 +8,7 @@ import { CustomPreloadingStrategy } from "@core/common/providers/custom-preloadi
 import { LayoutModule } from "@app/layout/layout.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { CoreModule } from "@core/core.module";
-import { NotFoundComponent } from './pages/Errors/not-found/not-found.component';
+import { NotFoundComponent } from "./pages/Errors/not-found/not-found.component";
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],

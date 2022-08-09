@@ -4,6 +4,7 @@ import {
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
+  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
 } from "@angular/common/http";
@@ -73,6 +74,7 @@ export class ApiHttpInterceptor implements HttpInterceptor {
         setHeaders: {
           Authorization: `Bearer ${this.authorization}`,
         },
+        headers: new HttpHeaders({ "Content-Type": "application/json" }),
       });
     }
 
@@ -144,7 +146,9 @@ export class ApiHttpInterceptor implements HttpInterceptor {
     return this._http
       .post(
         `${config.API_BASE_URL}/refresh-token`,
-        {},
+        {
+          refreshToken: "",
+        },
         { withCredentials: true }
       )
       .pipe(

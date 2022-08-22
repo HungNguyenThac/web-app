@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { routerFadeAnimation } from "@core/common/animations/router.animation";
 import { Store } from "@ngrx/store";
 import { AppState, getCoreState } from "@core/store";
 import { Observable } from "rxjs";
 import { SetBrowserTitleService } from "@core/services/set-browser-title.service";
+import { HttpClient } from "@angular/common/http";
+import { config } from "@core/common/constants/config";
 
 @Component({
   selector: "app-root",
@@ -11,20 +13,22 @@ import { SetBrowserTitleService } from "@core/services/set-browser-title.service
   styleUrls: ["./app.component.scss"],
   animations: [routerFadeAnimation],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = "Base Angular Ngrx";
-  private routerState: Observable<AppState>;
+  private _routerState: Observable<AppState>;
 
   constructor(
-    private store: Store<AppState>,
-    private setBrowserTitle: SetBrowserTitleService
+    private _store: Store<AppState>,
+    private _setBrowserTitle: SetBrowserTitleService,
+    private _httpSv: HttpClient
   ) {
-    this.routerState = store.select(getCoreState);
+    this._routerState = _store.select(getCoreState);
   }
 
   ngOnInit(): void {
-    this.setBrowserTitle.setBrowserTabTitle();
+    this._setBrowserTitle.setBrowserTabTitle();
+    this._httpSv
+      .post(`${config.API_BASE_URL}/post`, {})
+      .subscribe((rs) => console.log(rs));
   }
-
-  ngAfterViewInit() {}
 }

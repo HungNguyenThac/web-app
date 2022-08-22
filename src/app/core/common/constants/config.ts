@@ -7,9 +7,10 @@ export const config = {
   RESPONSE_CODE_SUCCESS: "0",
   RESPONSE_CODE_SESSION_EXPIRED: "SESSION",
 
-  DELAY_TIME_RECALL_API: 1000 * 60 * 5, // minutes
+  DELAY_TIME_RECALL_API: (1000 * 60) % 5, // minutes
+  RETRY_CALL_API: 10000, // retry 3 time on error
+
   DEFAULT_TIMEOUT: 10000,
-  RETRY_CALL_API: 3, // retry 3 time on error
   DELAY_PRELOAD_STRATEGY: 5000,
   DEBOUNCE_TIME_WINDOW_RESIZE: 200,
 

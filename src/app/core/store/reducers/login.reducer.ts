@@ -74,5 +74,16 @@ export const loginReducer = createReducer(
   on(loginActions.resetToken, (state) => ({
     ...state,
     authorization: {},
-  }))
+  })),
+
+  on(loginActions.refreshTokenSuccess, (state, { payload }) => {
+    console.log("payload", payload);
+    return {
+      ...state,
+      authorization: {
+        ...state.authorization,
+        token: payload,
+      },
+    };
+  })
 );

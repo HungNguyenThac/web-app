@@ -15,7 +15,6 @@ import {
 } from "@angular/material-moment-adapter";
 import { MAT_CHIPS_DEFAULT_OPTIONS } from "@angular/material/chips";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { environment } from "@environments/environment";
 import { appInitializerFactory } from "@app/share/translate/appInitializerFactory";
 import { MultiLanguageService } from "@app/share/translate/multiLanguageService";
 import { config } from "@core/common/constants/config";
@@ -36,6 +35,11 @@ export const providers = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: fromInterceptors.ApiHttpInterceptor,
+    multi: true,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: fromInterceptors.HandleErrorsInterceptor,
     multi: true,
   },
   {

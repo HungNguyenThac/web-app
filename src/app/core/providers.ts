@@ -19,6 +19,7 @@ import { appInitializerFactory } from "@app/share/translate/appInitializerFactor
 import { MultiLanguageService } from "@app/share/translate/multiLanguageService";
 import { config } from "@core/common/constants/config";
 import { MatDialogConfig } from "@angular/material/dialog";
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from "@angular/material/snack-bar";
 
 export const providers = [
   MultiLanguageService,
@@ -71,5 +72,9 @@ export const providers = [
     },
   },
   { provide: DEFAULT_TIMEOUT, useValue: config.DEFAULT_TIMEOUT },
+  {
+    provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+    useValue: { duration: config.MAT_SNACK_DURATION },
+  },
   MatDialogConfig,
 ];

@@ -27,6 +27,7 @@ import { Location } from "@angular/common";
 import { Store } from "@ngrx/store";
 import { logoutSignOut, refreshTokenSuccess } from "@core/store";
 import { get } from "lodash";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Injectable()
 export class HandleErrorsInterceptor implements HttpInterceptor {
@@ -45,7 +46,8 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
     private _loading: LoadingService,
     private _multiLanguageService: MultiLanguageService,
     private _notifier: ToastrService,
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _matSnack: MatSnackBar
   ) {}
 
   intercept(
@@ -57,7 +59,7 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError((error) => {
           if (error instanceof HttpErrorResponse)
-            return this._handleError(error, request, next);
+            return this._handleError(request, next, error);
 
           this._notifier.error(
             this._multiLanguageService.instant("common.something_went_wrong")
@@ -72,47 +74,45 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
   }
 
   private _handleError(
-    err: HttpErrorResponse,
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
+    err: HttpErrorResponse
   ): Observable<any> {
     this._loading.next(false);
 
     // retry on error
     if (this.ErrorStatusRetry.includes(err.status)) {
-      return next.handle(request).pipe(
-        retryWhen((errors) =>
-          errors.pipe(
-            tap(() => this._notifier.error(err?.message)),
-            delay(config.DELAY_TIME_RECALL_API),
-            take(config.RETRY_CALL_API)
-          )
-        ),
-        catchError((err) => of(err))
-      );
+      return this.handleRetryWhenErrors(request, next, err);
     }
 
-    // no retry on error
-    if (err.status != this.ErrorStatusNotRetry.Unauthorized)
-      this._notifier.error(err?.error?.message);
+    // not retry on error
+    this._notifier.error(err?.error?.message);
 
-    switch (err.status) {
-      case this.ErrorStatusNotRetry.Unauthorized:
-        // dont refresh token
-        // this._store.dispatch(logoutSignOut({}));
-        // return of(this._router.navigate(["auth/sign-in"]));
+    const objectFnHandleErrors = {
+      400: this.badRequest(err),
+      401: this.unAuthorized(request, next),
+      403: this.permissionDenied(err),
+    };
 
-        // refresh token
-        return this._reFreshToken(request, next);
-      case this.ErrorStatusNotRetry.BadRequest:
-        return of(err);
-      case this.ErrorStatusNotRetry.PermissionDenied:
-        this._location.back();
-        return of(err);
-      default:
-        return of(err);
+    const mapHandleErrors = new Map(Object.entries(objectFnHandleErrors));
+    if (mapHandleErrors.has(err.status.toString())) {
+      return mapHandleErrors.get(err.status.toString()) || EMPTY;
     }
+    return of(err);
   }
+
+  unAuthorized = (request: HttpRequest<any>, next: HttpHandler) => {
+    return this._reFreshToken(request, next);
+  };
+
+  badRequest = (err: HttpErrorResponse) => {
+    return of(err);
+  };
+
+  permissionDenied = (err: HttpErrorResponse) => {
+    this._location.back();
+    return of(err);
+  };
 
   private _reFreshToken = (
     request: HttpRequest<any>,
@@ -145,4 +145,21 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
         })
       );
   };
+
+  handleRetryWhenErrors = (
+    request: HttpRequest<any>,
+    next: HttpHandler,
+    err: HttpErrorResponse
+  ) =>
+    next.handle(request).pipe(
+      retryWhen((errors) =>
+        errors.pipe(
+          tap(() => this._matSnack.open(err.message, "")),
+          tap(() => this._notifier.error(err?.message)),
+          delay(config.DELAY_TIME_RECALL_API),
+          take(config.RETRY_CALL_API)
+        )
+      ),
+      catchError((err) => of(err))
+    );
 }

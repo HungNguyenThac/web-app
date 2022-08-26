@@ -7,7 +7,7 @@ export const config = {
   RESPONSE_CODE_SUCCESS: "0",
   RESPONSE_CODE_SESSION_EXPIRED: "SESSION",
 
-  DELAY_TIME_RECALL_API: (1000 * 60) % 5, // minutes
+  DELAY_TIME_RECALL_API: 1000 * 10, // minutes
   RETRY_CALL_API: 10000, // retry 3 time on error
 
   DEFAULT_TIMEOUT: 10000,
@@ -18,4 +18,6 @@ export const config = {
   PROJECT_NAME: environment.PROJECT_NAME,
 
   DEFAULT_LANGUAGE: environment.DEFAULT_LANGUAGE,
+
+  MAT_SNACK_DURATION: 5000,
 } as const;

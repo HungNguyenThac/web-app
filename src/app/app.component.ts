@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { routerFadeAnimation } from "@core/common/animations/router.animation";
 import { Store } from "@ngrx/store";
 import { AppState, getCoreState } from "@core/store";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { SetBrowserTitleService } from "@core/services/set-browser-title.service";
 import { HttpClient } from "@angular/common/http";
 import { config } from "@core/common/constants/config";
@@ -13,8 +13,9 @@ import { config } from "@core/common/constants/config";
   styleUrls: ["./app.component.scss"],
   animations: [routerFadeAnimation],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = "Base Angular Ngrx";
+  private _subManager = new Subscription();
   private _routerState: Observable<AppState>;
 
   constructor(
@@ -25,8 +26,11 @@ export class AppComponent implements OnInit {
     this._routerState = _store.select(getCoreState);
   }
 
+  ngOnDestroy(): void {
+    this._subManager.unsubscribe();
+  }
+
   ngOnInit(): void {
-    this._setBrowserTitle.setBrowserTabTitle();
     this._httpSv
       .post(`${config.API_BASE_URL}/post`, {})
       .subscribe((rs) => console.log(rs));

@@ -1,5 +1,49 @@
-html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a, img, small, strike, strong, sub, sup, tt, var,
-b, u, i, center, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, canvas, embed, footer, header section, audio, video {
+html,
+body,
+div,
+span,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+a,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+canvas,
+embed,
+footer,
+header section,
+audio,
+video {
   margin: 0;
   padding: 0;
   font-size: 100%;
@@ -9,8 +53,17 @@ b, u, i, center, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -18,11 +71,13 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 

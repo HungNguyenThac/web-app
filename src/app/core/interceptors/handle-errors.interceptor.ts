@@ -95,10 +95,8 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
     };
 
     const mapHandleErrors = new Map(Object.entries(objectFnHandleErrors));
-    if (mapHandleErrors.has(err.status.toString())) {
-      return mapHandleErrors.get(err.status.toString()) || EMPTY;
-    }
-    return of(err);
+
+    return mapHandleErrors.get(err.status.toString()) || of(err);
   }
 
   unAuthorized = (request: HttpRequest<any>, next: HttpHandler) => {
@@ -122,7 +120,7 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
       .post(
         `${config.API_BASE_URL}/refresh-token`,
         {
-          refreshToken: "123123",
+          refreshToken: "example",
         },
         { withCredentials: true }
       )

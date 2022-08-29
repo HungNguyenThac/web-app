@@ -31,8 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._httpSv
-      .post(`${config.API_BASE_URL}/post`, {})
-      .subscribe((rs) => console.log(rs));
+    // this._httpSv
+    //   .post(`${config.API_BASE_URL}/post`, {})
+    //   .subscribe((rs) => console.log(rs));
   }
 }

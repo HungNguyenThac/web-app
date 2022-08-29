@@ -1,6 +1,6 @@
 import { Injector } from "@angular/core";
 import { LOCATION_INITIALIZED } from "@angular/common";
-import { MultiLanguageService } from "./multiLanguageService";
+import { MultiLanguageService } from "@app/share/translate";
 
 export function appInitializerFactory(
   translate: MultiLanguageService,

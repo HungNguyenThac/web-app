@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MatPaginatorIntl } from "@angular/material/paginator";
-import { MultiLanguageService } from "@app/share/translate/multiLanguageService";
+import { MultiLanguageService } from "@app/share/translate";
 
 @Injectable()
 export class CustomMatPaginatorIntl extends MatPaginatorIntl {

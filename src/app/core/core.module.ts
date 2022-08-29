@@ -4,12 +4,12 @@ import { providers } from "@core/providers";
 import { throwIfAlreadyLoaded } from "@core/module-import-guard";
 import { HttpClient } from "@angular/common/http";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { HttpLoaderFactory } from "@app/share/translate/translate.factory";
 import { JwtModule } from "@auth0/angular-jwt";
 import { Storage } from "@core/utils/storage";
 import { GlobalConfig, ToastrModule } from "ngx-toastr";
 import { CoreStoreModule } from "@core/store";
 import { NgxPermissionsModule } from "ngx-permissions";
+import { HttpLoaderFactory } from "@app/share/translate";
 
 const customNotifierOptions: Partial<GlobalConfig> = {
   positionClass: "toast-bottom-right",

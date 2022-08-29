@@ -14,10 +14,10 @@ import {
 import { Store } from "@ngrx/store";
 import { AppState } from "../index";
 import { of, Subscription } from "rxjs";
-import { MultiLanguageService } from "@app/share/translate/multiLanguageService";
 import { ToastrService } from "ngx-toastr";
 import { LoginForm } from "../../../../public/models";
 import { NgxPermissionsService } from "ngx-permissions";
+import { MultiLanguageService } from "@app/share/translate";
 
 @Injectable()
 export class LoginEffects {

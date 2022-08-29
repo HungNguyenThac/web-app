@@ -15,11 +15,13 @@ import {
 } from "@angular/material-moment-adapter";
 import { MAT_CHIPS_DEFAULT_OPTIONS } from "@angular/material/chips";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { appInitializerFactory } from "@app/share/translate/appInitializerFactory";
-import { MultiLanguageService } from "@app/share/translate/multiLanguageService";
 import { config } from "@core/common/constants/config";
 import { MatDialogConfig } from "@angular/material/dialog";
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from "@angular/material/snack-bar";
+import {
+  appInitializerFactory,
+  MultiLanguageService,
+} from "@app/share/translate";
 
 export const providers = [
   MultiLanguageService,

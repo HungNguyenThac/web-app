@@ -91,7 +91,7 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
 
     const mapHandleErrors = new Map(Object.entries(objectFnHandleErrors));
 
-    return mapHandleErrors.get(err.status.toString()) || of(err);
+    return mapHandleErrors.get(err.status.toString()) ?? of(err);
   }
 
   unAuthorized = (request: HttpRequest<any>, next: HttpHandler) => {

@@ -7,17 +7,7 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from "@angular/common/http";
-import {
-  catchError,
-  delay,
-  EMPTY,
-  Observable,
-  of,
-  retryWhen,
-  switchMap,
-  take,
-  tap,
-} from "rxjs";
+import { catchError, delay, EMPTY, Observable, of, retryWhen, switchMap, take, tap } from "rxjs";
 import { config } from "@core/common/constants/config";
 import { ToastrService } from "ngx-toastr";
 import { LoadingService } from "@core/services/loading.service";
@@ -27,7 +17,7 @@ import { Store } from "@ngrx/store";
 import { logoutSignOut, refreshTokenSuccess } from "@core/store";
 import { get } from "lodash";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { baseResponse } from "@app/share/interface";
+import { baseHttpResponse } from "@app/share/interface";
 import { MultiLanguageService } from "@app/share/translate";
 
 @Injectable()
@@ -45,20 +35,14 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
     private _matSnack: MatSnackBar
   ) {}
 
-  intercept(
-    request: HttpRequest<unknown>,
-    next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // check domain
     if (request.url.startsWith(config.API_BASE_URL)) {
       return next.handle(request).pipe(
         catchError((error) => {
-          if (error instanceof HttpErrorResponse)
-            return this._handleError(request, next, error);
+          if (error instanceof HttpErrorResponse) return this._handleError(request, next, error);
 
-          this._notifier.error(
-            this._multiLanguageService.instant("common.something_went_wrong")
-          );
+          this._notifier.error(this._multiLanguageService.instant("common.something_went_wrong"));
 
           return of(null);
         })
@@ -68,11 +52,7 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
     }
   }
 
-  private _handleError(
-    request: HttpRequest<any>,
-    next: HttpHandler,
-    err: HttpErrorResponse
-  ): Observable<any> {
+  private _handleError(request: HttpRequest<any>, next: HttpHandler, err: HttpErrorResponse): Observable<any> {
     this._loading.next(false);
 
     // retry on error
@@ -107,10 +87,7 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
     return of(err);
   };
 
-  private _reFreshToken = (
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<any> => {
+  private _reFreshToken = (request: HttpRequest<any>, next: HttpHandler): Observable<any> => {
     return this._http
       .post(
         `${config.API_BASE_URL}/refresh-token`,
@@ -120,7 +97,7 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
         { withCredentials: true }
       )
       .pipe(
-        switchMap((res: baseResponse) => {
+        switchMap((res: baseHttpResponse) => {
           if (!res || res.codeSuccess != config.RESPONSE_CODE_SUCCESS) {
             this._store.dispatch(logoutSignOut({}));
             const message = get(res, "resultDesc", null) || "error";
@@ -139,11 +116,7 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
       );
   };
 
-  handleRetryWhenErrors = (
-    request: HttpRequest<any>,
-    next: HttpHandler,
-    err: HttpErrorResponse
-  ) =>
+  handleRetryWhenErrors = (request: HttpRequest<any>, next: HttpHandler, err: HttpErrorResponse) =>
     next.handle(request).pipe(
       retryWhen((errors) =>
         errors.pipe(

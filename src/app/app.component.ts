@@ -5,13 +5,17 @@ import { AppState, getCoreState } from "@core/store";
 import { Observable, Subscription } from "rxjs";
 import { SetBrowserTitleService } from "@core/services/set-browser-title.service";
 import { HttpClient } from "@angular/common/http";
-import { config } from "@core/common/constants/config";
+import { MainLayoutComponent } from "@app/layout/main-layout/main-layout.component";
+import { RouterModule } from "@angular/router";
+import { componentsShare } from "@app/share/components";
 
 @Component({
+  standalone: true,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
   animations: [routerFadeAnimation],
+  imports: [MainLayoutComponent, RouterModule, componentsShare],
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = "Base Angular Ngrx";

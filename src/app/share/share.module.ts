@@ -2,16 +2,15 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MaterialModule } from "./modules/material.modules";
 import { HttpClientModule } from "@angular/common/http";
-import * as formComponents from "@app/share/components";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { directives } from "@app/share/directives";
+import { pipes } from "@app/share/pipes";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserModule } from "@angular/platform-browser";
 
 @NgModule({
-  declarations: [...formComponents.components],
-  imports: [CommonModule, MaterialModule, HttpClientModule],
-  exports: [MaterialModule, ...formComponents.components],
-  providers: [
-    { provide: MAT_DIALOG_DATA, useValue: {} },
-    { provide: MatDialogRef, useValue: {} },
-  ],
+  declarations: [...directives, ...pipes],
+  imports: [MaterialModule, CommonModule, BrowserAnimationsModule, BrowserModule, HttpClientModule],
+  exports: [MaterialModule, ...directives, ...pipes],
+  providers: [],
 })
 export class ShareModule {}

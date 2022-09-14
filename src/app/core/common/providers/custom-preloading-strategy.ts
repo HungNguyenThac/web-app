@@ -18,9 +18,7 @@ export class CustomPreloadingStrategy implements PreloadingStrategy {
       }
 
       if (route.data["delay"]) {
-        return timer(config.DELAY_PRELOAD_STRATEGY).pipe(
-          mergeMap(() => load())
-        );
+        return timer(config.DELAY_PRELOAD_STRATEGY).pipe(mergeMap(() => load()));
       }
 
       return load();

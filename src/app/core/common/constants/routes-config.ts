@@ -8,6 +8,7 @@ export const configRoutes = {
     PATH: "",
     CHILDREN: {
       LOGIN: "sign-in",
+      REGISTER: "register",
     },
   },
 } as const;

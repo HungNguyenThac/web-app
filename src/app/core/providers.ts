@@ -7,6 +7,8 @@ import { CustomMatPaginatorIntl } from "./common/providers/mat-paginator-custom"
 import { config } from "@core/common/constants/config";
 import { appInitializerFactory, MultiLanguageService } from "@app/share/translate";
 import { CustomPreloadingStrategy } from "@core/common/providers/custom-preloading-strategy";
+import { TitleStrategy } from "@angular/router";
+import { TemplatePageTitleStrategy } from "@core/services/set-browser-title.service";
 
 export const providers = [
   MultiLanguageService,
@@ -42,5 +44,6 @@ export const providers = [
     multi: true,
   },
   { provide: DEFAULT_TIMEOUT, useValue: config.DEFAULT_TIMEOUT },
+  { provide: TitleStrategy, useClass: TemplatePageTitleStrategy },
   CustomPreloadingStrategy,
 ];

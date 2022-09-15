@@ -8,9 +8,7 @@ export const routes: Routes = [
   {
     path: configRoutes.APP_ROUTING.PATH,
     component: MainLayoutComponent,
-    data: {
-      title: "Main Layout",
-    },
+    title: "Main layout",
   },
   {
     path: configRoutes.APP_ROUTING.AUTH_ROUTING,
@@ -21,8 +19,6 @@ export const routes: Routes = [
   {
     path: configRoutes.APP_ROUTING.NOT_FOUND,
     component: NotFoundComponent,
-    data: {
-      title: pagesTitle.NOT_FOUND,
-    },
+    title: pagesTitle.NOT_FOUND,
   },
 ];

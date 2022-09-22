@@ -1,14 +1,13 @@
-import { HTTP_INTERCEPTORS, HttpHandler } from "@angular/common/http";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import * as fromInterceptors from "@core/interceptors";
 import { DEFAULT_TIMEOUT } from "@core/interceptors/timeout.interceptor";
 import { APP_INITIALIZER, Injector } from "@angular/core";
-import { MatPaginatorIntl } from "@angular/material/paginator";
-import { CustomMatPaginatorIntl } from "./common/providers/mat-paginator-custom";
 import { config } from "@core/common/constants/config";
 import { appInitializerFactory, MultiLanguageService } from "@app/share/translate";
 import { CustomPreloadingStrategy } from "@core/common/providers/custom-preloading-strategy";
-import { TitleStrategy } from "@angular/router";
+import { RouteReuseStrategy, TitleStrategy } from "@angular/router";
 import { TemplatePageTitleStrategy } from "@core/services/set-browser-title.service";
+import { RouteReusableStrategy } from "@core/services/route-reuseable-strategy.service";
 
 export const providers = [
   MultiLanguageService,
@@ -45,5 +44,6 @@ export const providers = [
   },
   { provide: DEFAULT_TIMEOUT, useValue: config.DEFAULT_TIMEOUT },
   { provide: TitleStrategy, useClass: TemplatePageTitleStrategy },
+  { provide: RouteReuseStrategy, useClass: RouteReusableStrategy },
   CustomPreloadingStrategy,
 ];

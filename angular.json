@@ -173,5 +173,6 @@
         }
       }
     }
-  }
+  },
+  "defaultProject": "base-angular-ngrx"
 }

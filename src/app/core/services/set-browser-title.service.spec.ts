@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { SetBrowserTitleService } from './set-browser-title.service';
+import { TemplatePageTitleStrategy } from "./set-browser-title.service";
 
-describe('SetBrowserTitleService', () => {
-  let service: SetBrowserTitleService;
+describe("TemplatePageTitleStrategy", () => {
+  let service: TemplatePageTitleStrategy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SetBrowserTitleService);
+    service = TestBed.inject(TemplatePageTitleStrategy);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

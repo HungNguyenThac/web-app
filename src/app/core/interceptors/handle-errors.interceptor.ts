@@ -31,13 +31,13 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
     private _loading: LoadingService,
     private _multiLanguageService: MultiLanguageService,
     private _notifier: ToastrService,
-    private _http: HttpClient,
-    private _matSnack: MatSnackBar
+    private _http: HttpClient
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // check domain
     if (request.url.startsWith(config.API_BASE_URL)) {
+      console.log("error");
       return next.handle(request).pipe(
         catchError((error) => {
           if (error instanceof HttpErrorResponse) return this._handleError(request, next, error);
@@ -120,7 +120,6 @@ export class HandleErrorsInterceptor implements HttpInterceptor {
     next.handle(request).pipe(
       retryWhen((errors) =>
         errors.pipe(
-          tap(() => this._matSnack.open(err.message, "")),
           tap(() => this._notifier.error(err?.message)),
           delay(config.DELAY_TIME_RECALL_API),
           take(config.RETRY_CALL_API)

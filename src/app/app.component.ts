@@ -14,7 +14,8 @@ import { componentsShare } from "@app/share/components";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
   animations: [routerFadeAnimation],
-  imports: [MainLayoutComponent, RouterModule, componentsShare],
+  imports: [MainLayoutComponent, RouterModule, componentsShare.loading],
+  providers: [],
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = "Base Angular Ngrx";

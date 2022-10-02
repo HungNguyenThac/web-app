@@ -1,0 +1,13 @@
+<ul class="subs-category">
+  <li
+    class="item"
+    *ngFor="let item of category.subsCategory"
+    [class.active]="item.isActive"
+    [routerLinkActive]="item.url"
+  >
+    <div></div>
+    <h6 class="item_name">
+      {{ item.name }}
+    </h6>
+  </li>
+</ul>

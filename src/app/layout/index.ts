@@ -1,5 +1,5 @@
-import { HeaderComponent } from "@app/layout/header/header.component";
-import { FooterComponent } from "@app/layout/footer/footer.component";
-import { SidebarComponent } from "@app/layout/sidebar/sidebar.component";
+import { HeaderComponent } from "@app/layout/blocks/header/header.component";
+import { FooterComponent } from "@app/layout/blocks/footer/footer.component";
+import { BodyComponent } from "@app/layout/blocks/body/body.component";
 
-export const layout: any[] = [HeaderComponent, FooterComponent, SidebarComponent];
+export const layout: any[] = [HeaderComponent, FooterComponent, BodyComponent];

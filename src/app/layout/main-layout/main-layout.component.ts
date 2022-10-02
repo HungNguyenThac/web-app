@@ -1,12 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { layout } from "@app/layout";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 @Component({
   standalone: true,
-  selector: "app-main-layout",
+  selector: "app-desktop-layout",
   templateUrl: "./main-layout.component.html",
   styleUrls: ["./main-layout.component.scss"],
-  imports: [layout],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [layout, MatSidenavModule],
 })
 export class MainLayoutComponent implements OnInit {
   constructor() {}

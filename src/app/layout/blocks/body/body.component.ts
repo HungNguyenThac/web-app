@@ -1,10 +1,17 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from "@angular/core";
 import { SidebarComponent } from "@app/layout/blocks/sidebar/sidebar.component";
 import { MatDrawerMode, MatSidenavModule } from "@angular/material/sidenav";
 import { RouterModule } from "@angular/router";
 import { routerFadeAnimation } from "@core/common/animations/router.animation";
 import { WindowResizeService } from "@core/services/window-resize.service";
 import { config } from "@core/common/constants/config";
+import { TaskBarComponent } from "@app/layout/blocks/task-bar/task-bar.component";
 
 @Component({
   selector: "app-body",
@@ -12,24 +19,28 @@ import { config } from "@core/common/constants/config";
   styleUrls: ["./body.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [SidebarComponent, MatSidenavModule, RouterModule],
+  imports: [SidebarComponent, MatSidenavModule, RouterModule, TaskBarComponent],
   animations: [routerFadeAnimation],
 })
 export class BodyComponent implements OnInit, AfterViewInit {
-  opened = false;
+  opened = true;
   hasBackdrop = true;
   sideMode: MatDrawerMode = "over";
 
-  constructor(public windowResize: WindowResizeService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    public windowResize: WindowResizeService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.windowResize.windowWidth$.subscribe((rs) => {
       if (rs > config.BREAK_POINT_TABLET) {
-        this.opened = true;
-        this.hasBackdrop = false;
-        this.sideMode = "side";
+        ((this.sideMode = "side"), (this.opened = true)),
+          (this.hasBackdrop = false);
       } else {
-        (this.opened = false), (this.hasBackdrop = true), (this.sideMode = "over");
+        (this.opened = true),
+          (this.sideMode = "over"),
+          (this.hasBackdrop = true);
       }
     });
   }

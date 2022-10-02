@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
   standalone: true,
   selector: "app-header",
   templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {

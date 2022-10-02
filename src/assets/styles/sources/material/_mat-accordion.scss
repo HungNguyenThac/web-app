@@ -1,0 +1,32 @@
+@import "../variables";
+.mat-accordion .mat-expansion-panel:first-of-type {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  margin: 0;
+}
+mat-expansion-panel {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  user-select: none;
+}
+
+.mat-expansion-panel {
+  border-radius: 0;
+}
+mat-expansion-panel-header {
+  &.mat-expanded {
+    opacity: 0.8;
+
+    & .mat-expansion-panel-header-title {
+      transition: $transition;
+      font-size: $font-size-tablet;
+    }
+  }
+}
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}
+.mat-expansion-panel-header {
+  font-size: $font-size-mobile;
+}

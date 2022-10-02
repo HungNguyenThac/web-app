@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-product-grid',
-  templateUrl: './product-grid.component.html',
-  styleUrls: ['./product-grid.component.scss']
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: "app-product-grid",
+  templateUrl: "./product-grid.component.html",
+  styleUrls: ["./product-grid.component.scss"],
+  imports: [],
 })
 export class ProductGridComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

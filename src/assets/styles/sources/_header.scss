@@ -1,15 +1,6 @@
-#main-layout {
-  height: 100vh;
-  max-height: 100vh;
-  .container {
-    height: 100%;
-  }
-}
-
+@import "variables";
 #header-wrapper {
-  height: 90px;
-}
-
-#footer-wrapper {
-  display: none;
+  height: 112px;
+  background-color: $header-bg;
+  border-radius: 0 0 4px 4px;
 }

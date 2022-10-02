@@ -1,4 +1,4 @@
-export type size = "XS" | "S" | "M" | "L" | "LL";
+export type sizeDrink = "XS" | "S" | "M" | "L" | "XL";
 
 export interface IDrinks {
   name: string;
@@ -10,16 +10,16 @@ export interface IDrinks {
   image: string[];
   thumbnail?: string;
   prices: number;
-  size: size[];
+  size: sizeDrink[];
   quantity: number;
   sale?: number;
 }
 
-export const drinks_list: IDrinks[] = [
+export const drink_list: IDrinks[] = [
   {
     name: "Cà phê đen",
     url: "/ca_phe_den",
-    category: "drinks_list",
+    category: "drinks",
     category_id: 1,
     drink_id: 1,
     des: "Cà phê đen, có các size: M, L, S",
@@ -31,7 +31,7 @@ export const drinks_list: IDrinks[] = [
     ],
     prices: 49000,
     thumbnail: "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["S", "M", "L"],
+    size: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
   },
 ];

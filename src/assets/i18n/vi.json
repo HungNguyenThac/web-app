@@ -13,5 +13,13 @@
     "last_page": "Trang cuối",
     "next_page": "Trang sau",
     "previous_page": "Trang trước"
+  },
+  "asidemenu": {
+    "category": {
+      "title": "Danh mục",
+      "drinks": "Thức uống",
+      "foods": "Món ăn",
+      "fruits": "Hoa quả"
+    }
   }
 }

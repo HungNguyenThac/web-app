@@ -8,11 +8,21 @@ export const routes: Routes = [
   {
     path: configRoutes.APP_ROUTING.PATH,
     component: MainLayoutComponent,
-    title: "Main layout",
+    title: pagesTitle.MAIN,
+    children: [
+      {
+        path: "",
+        loadComponent: () =>
+          import("./pages/home/home/home.component").then(
+            (c) => c.HomeComponent
+          ),
+      },
+    ],
   },
   {
     path: configRoutes.APP_ROUTING.AUTH_ROUTING,
-    loadChildren: () => import("./pages/auth/auth-routing.module").then((mod) => mod.authRoutes),
+    loadChildren: () =>
+      import("./pages/auth/auth-routing.module").then((mod) => mod.authRoutes),
     // canLoad: [AuthGuardService],
     data: { preload: true, delay: true },
   },

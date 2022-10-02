@@ -4,7 +4,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 
 @Component({
   standalone: true,
-  selector: "app-desktop-layout",
+  selector: "app-main-layout",
   templateUrl: "./main-layout.component.html",
   styleUrls: ["./main-layout.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -20,4 +20,8 @@ export const config = {
   DEFAULT_LANGUAGE: environment.DEFAULT_LANGUAGE,
 
   MAT_SNACK_DURATION: 5000,
+
+  BREAK_POINT_TABLET: 992,
+
+  BREAK_POINT_MOBILE: 576,
 } as const;

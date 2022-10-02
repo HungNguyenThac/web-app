@@ -1,3 +1,24 @@
-<div id="sidebar">
-  <div class="block-title">hello</div>
+<div id="aside-menu-wrapper">
+  <div class="block-category">
+    <div class="category-title">
+      <h3>{{ "asidemenu.category.title" | translate }}</h3>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel
+        style="margin: 0"
+        *ngFor="let item of categoryList"
+        [class.active]="item.isActive"
+        [routerLinkActive]="item.url"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h6 class="item_name">
+              {{ item.name }}
+            </h6>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-subs-category [category]="item"></app-subs-category>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>

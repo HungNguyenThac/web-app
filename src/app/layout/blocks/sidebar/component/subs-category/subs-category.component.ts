@@ -10,13 +10,13 @@ import { CommonModule } from "@angular/common";
 
 @Component({
   standalone: true,
-  selector: "app-subs-catergory",
-  templateUrl: "./subs-catergory.component.html",
+  selector: "app-subs-category",
+  templateUrl: "./subs-category.component.html",
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterModule, CommonModule],
 })
-export class SubsCatergoryComponent implements OnInit {
+export class SubsCategoryComponent implements OnInit {
   @Input() category: ICategory;
   constructor() {}
 

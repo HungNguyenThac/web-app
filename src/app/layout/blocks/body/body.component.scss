@@ -1,15 +1,8 @@
 #body-wrapper {
-  height: calc(100% - 90px);
-  padding: 16px 0;
+  height: calc(100% - 208px);
+  margin: 16px 0;
 }
 .sidenav-container {
-  border-radius: 12px;
+  border-radius: 4px;
   height: 100%;
-}
-
-@media screen and (max-width: 992px) {
-  #body-wrapper {
-    height: calc(100% - 90px);
-    padding: 12px 0 0 0;
-  }
 }

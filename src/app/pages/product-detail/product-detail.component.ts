@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 
 @Component({
+  selector: "app-product-detail",
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"],
-  imports: [],
+  templateUrl: "./product-detail.component.html",
+  styleUrls: ["./product-detail.component.scss"],
 })
-export class HomeComponent implements OnInit {
+export class ProductDetailComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 
 @Component({
+  selector: "app-payment",
+  templateUrl: "./payment.component.html",
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: "app-task-bar",
-  templateUrl: "./task-bar.component.html",
-  styleUrls: ["./task-bar.component.scss"],
+  styleUrls: ["./payment.component.scss"],
 })
-export class TaskBarComponent implements OnInit {
+export class PaymentComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

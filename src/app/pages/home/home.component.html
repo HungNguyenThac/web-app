@@ -1,0 +1,24 @@
+<div id="home-wrapper" class="page-wrapper">
+  <div class="page">
+    <div class="block">
+      <div class="block-title">
+        <div>
+          <button mat-button mat-raised-button>Back</button>
+        </div>
+        <span class="title">Vui lòng chọn loại sản phẩm</span>
+        <div></div>
+      </div>
+      <div class="block-content">
+        <div class="row">
+          <ng-container *ngFor="let item of category | async">
+            <div class="col-6">
+              <div class="item" [routerLink]="item.url">
+                <h2>{{ item.name }}</h2>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

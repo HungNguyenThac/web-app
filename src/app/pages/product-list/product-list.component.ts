@@ -1,30 +1,31 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { ICategory } from "@app/fake_data/category";
-import { ActivatedRoute, Router } from "@angular/router";
-import { MenuLv2Service } from "@app/pages/menu-lv2/services/menu-lv2.service";
-import { pluck, switchMap } from "rxjs";
-import { MenuLv3Service } from "@app/pages/menu-lv3/services/menu-lv3.service";
-import { CommonModule } from "@angular/common";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ProductListService } from "@app/pages/product-list/services/product-list.service";
+import { CommonModule, Location } from "@angular/common";
+import { drink_list, IDrinks } from "@app/fake_data/drink_list";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
-  selector: "app-menu-lv3",
+  selector: "app-product-list",
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: "./menu-lv3.component.html",
-  styleUrls: ["./menu-lv3.component.scss"],
-  providers: [MenuLv3Service, CommonModule],
+  templateUrl: "./product-list.component.html",
+  styleUrls: ["./product-list.component.scss"],
+  imports: [MatButtonModule, CommonModule, RouterModule],
+  providers: [ProductListService],
 })
-export class MenuLv3Component implements OnInit {
-  data: ICategory;
+export class ProductListComponent implements OnInit {
+  productList: IDrinks[] = drink_list;
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private menulv3Sv: MenuLv3Service
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router,
+    private _menulv3Sv: ProductListService,
+    public location: Location
   ) {}
 
   ngOnInit(): void {}
 
   switchToDetail(url: string) {
-    this.router.navigate([this.data.url + "/" + url]);
+    this._router.navigate([this._router.url + "/" + url]).then();
   }
 }

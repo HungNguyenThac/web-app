@@ -8,13 +8,18 @@ export const routes: Routes = [
   {
     path: configRoutes.APP_ROUTING.PATH,
     component: MainLayoutComponent,
-    title: pagesTitle.MAIN,
+    title: pagesTitle.HOME,
     children: [
       {
         path: "",
         loadComponent: () =>
-          import("./pages/home/home/home.component").then(
-            (c) => c.HomeComponent
+          import("./pages/home/home.component").then((c) => c.HomeComponent),
+      },
+      {
+        path: ":slug",
+        loadChildren: () =>
+          import("./pages/menu-lv2/menu-lv2.routing").then(
+            (r) => r.menuLv2Routing
           ),
       },
     ],
@@ -24,11 +29,12 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./pages/auth/auth-routing.module").then((mod) => mod.authRoutes),
     // canLoad: [AuthGuardService],
-    data: { preload: true, delay: true },
+    data: { preload: false, delay: true },
   },
   {
     path: configRoutes.APP_ROUTING.NOT_FOUND,
     component: NotFoundComponent,
+    pathMatch: "full",
     title: pagesTitle.NOT_FOUND,
   },
 ];

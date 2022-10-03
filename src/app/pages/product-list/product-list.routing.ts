@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
 
-export const menuLv3Routing: Routes = [
+export const productListRouting: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("./menu-lv3.component").then((c) => c.MenuLv3Component),
+      import("./product-list.component").then((c) => c.ProductListComponent),
   },
   {
     path: ":slug",

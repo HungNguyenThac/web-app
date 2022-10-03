@@ -1,5 +1,5 @@
 export const pagesTitle = {
-  MAIN: "Trang Chủ",
+  HOME: "Trang Chủ",
   LOGIN: "Đăng Nhập",
   REGISTER: "Đăng Ký",
   NOT_FOUND: "Not Found",

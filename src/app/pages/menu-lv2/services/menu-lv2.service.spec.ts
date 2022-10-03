@@ -1,13 +1,13 @@
 import { TestBed } from "@angular/core/testing";
 
-import { ProductsLv2Service } from "./products-lv2.service";
+import { MenuLv2Service } from "./menu-lv2.service";
 
 describe("ProductsService", () => {
-  let service: ProductsLv2Service;
+  let service: MenuLv2Service;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ProductsLv2Service);
+    service = TestBed.inject(MenuLv2Service);
   });
 
   it("should be created", () => {

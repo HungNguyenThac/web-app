@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MenuLv3Component } from './menu-lv3.component';
+import { ProductListComponent } from "./product-list.component";
 
-describe('MenuLv3Component', () => {
-  let component: MenuLv3Component;
-  let fixture: ComponentFixture<MenuLv3Component>;
+describe("MenuLv3Component", () => {
+  let component: ProductListComponent;
+  let fixture: ComponentFixture<ProductListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenuLv3Component ]
-    })
-    .compileComponents();
+      declarations: [ProductListComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(MenuLv3Component);
+    fixture = TestBed.createComponent(ProductListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -11,7 +11,6 @@ import { RouterModule } from "@angular/router";
 import { routerFadeAnimation } from "@core/common/animations/router.animation";
 import { WindowResizeService } from "@core/services/window-resize.service";
 import { config } from "@core/common/constants/config";
-import { TaskBarComponent } from "@app/layout/blocks/task-bar/task-bar.component";
 
 @Component({
   selector: "app-body",
@@ -19,7 +18,7 @@ import { TaskBarComponent } from "@app/layout/blocks/task-bar/task-bar.component
   styleUrls: ["./body.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [SidebarComponent, MatSidenavModule, RouterModule, TaskBarComponent],
+  imports: [SidebarComponent, MatSidenavModule, RouterModule],
   animations: [routerFadeAnimation],
 })
 export class BodyComponent implements OnInit, AfterViewInit {

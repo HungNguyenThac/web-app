@@ -6,7 +6,6 @@ import { HttpClient } from "@angular/common/http";
 import { MainLayoutComponent } from "@app/layout/main-layout/main-layout.component";
 import { RouterModule } from "@angular/router";
 import { componentsShare } from "@app/share/components";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   standalone: true,
@@ -17,8 +16,7 @@ import { faCoffee } from "@fortawesome/free-solid-svg-icons";
   providers: [],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = "Base Angular Ngrx";
-  faCoffee = faCoffee;
+  title = "Tada Menu";
   private _subManager = new Subscription();
   private _routerState: Observable<AppState>;
 
@@ -30,9 +28,5 @@ export class AppComponent implements OnInit, OnDestroy {
     this._subManager.unsubscribe();
   }
 
-  ngOnInit(): void {
-    // this._httpSv
-    //   .post(`${config.API_BASE_URL}/post`, {})
-    //   .subscribe((rs) => console.log(rs));
-  }
+  ngOnInit(): void {}
 }

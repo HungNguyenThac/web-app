@@ -2,6 +2,7 @@ export interface ISubsCategory {
   name: string;
   url: string;
   isActive: boolean;
+  id: number;
 }
 
 export interface ICategory {
@@ -17,116 +18,109 @@ export interface ICategory {
 export const category: ICategory[] = [
   {
     name: "Thức uống",
-    url: "/thuc_uong",
+    url: "thuc_uong",
     category: "drinks",
     des: "danh mục đồ uống",
     isActive: false,
     id: 1,
     subsCategory: [
       {
-        name: "cà phê đen",
-        url: "/ca_phe_den",
+        name: "cà phê",
+        url: "/ca_phe",
         isActive: false,
+        id: 11,
       },
       {
-        name: "cà phê đen",
-        url: "/ca_phe_den",
+        name: "trà sữa",
+        url: "/tra_sua",
         isActive: false,
+        id: 12,
       },
       {
-        name: "cà phê đen",
-        url: "/ca_phe_den",
+        name: "trà",
+        url: "/tra",
         isActive: false,
+        id: 13,
       },
       {
-        name: "cà phê đen",
-        url: "/ca_phe_den",
+        name: "sinh tố",
+        url: "/sinh_to",
         isActive: false,
+        id: 14,
       },
       {
-        name: "cà phê đen",
-        url: "/ca_phe_den",
+        name: "nước khoáng",
+        url: "/nuoc_khoang",
         isActive: false,
+        id: 15,
       },
     ],
   },
   {
     name: "Món ăn",
-    url: "/mon_an",
+    url: "mon_an",
     category: "foods",
     des: "danh mục món ăn",
     id: 2,
     isActive: false,
     subsCategory: [
       {
-        name: "Phở bò",
-        url: "/pho_bo",
+        name: "Phở",
+        url: "/pho",
         isActive: false,
+        id: 21,
       },
       {
-        name: "Phở bò",
-        url: "/pho_bo",
+        name: "Cơm",
+        url: "/com",
         isActive: false,
+        id: 22,
       },
       {
-        name: "Phở bò",
-        url: "/pho_bo",
+        name: "Bánh mỳ",
+        url: "/banh_my",
         isActive: false,
+        id: 23,
       },
       {
-        name: "Phở bò",
+        name: "Bún",
         url: "/pho_bo",
         isActive: false,
+        id: 24,
       },
       {
-        name: "Phở bò",
+        name: "Miến",
         url: "/pho_bo",
         isActive: false,
+        id: 25,
       },
     ],
   },
   {
-    name: "Hoa quả",
-    url: "/hoa_qua",
+    name: "rau quả",
+    url: "rau_qua",
     category: "fruits",
     des: "danh mục hoa quả",
     isActive: false,
     id: 3,
     subsCategory: [
       {
-        name: "Táo",
-        url: "/táo",
+        name: "trái cây",
+        url: "/trai_cay",
         isActive: false,
+        id: 31,
       },
       {
-        name: "Táo",
-        url: "/táo",
+        name: "rau xanh",
+        url: "/rau_xanh",
         isActive: false,
+        id: 32,
       },
       {
-        name: "Táo",
-        url: "/táo",
+        name: "sa lát",
+        url: "/sa_lat",
         isActive: false,
-      },
-      {
-        name: "Táo",
-        url: "/táo",
-        isActive: false,
-      },
-      {
-        name: "Táo",
-        url: "/táo",
-        isActive: false,
-      },
-      {
-        name: "Táo",
-        url: "/táo",
-        isActive: false,
-      },
-      {
-        name: "Táo",
-        url: "/táo",
-        isActive: false,
+        id: 33,
       },
     ],
   },

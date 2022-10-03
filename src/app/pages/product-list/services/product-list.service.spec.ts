@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { MenuLv3Service } from './menu-lv3.service';
+import { ProductListService } from "./product-list.service";
 
-describe('MenuLv3Service', () => {
-  let service: MenuLv3Service;
+describe("MenuLv3Service", () => {
+  let service: ProductListService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MenuLv3Service);
+    service = TestBed.inject(ProductListService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

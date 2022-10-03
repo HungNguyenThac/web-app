@@ -1,5 +1,42 @@
-<div class="page-wrapper">
+<div id="home-wrapper" class="page-wrapper">
   <div class="page">
-    <h1>Product detail</h1>
+    <div class="block">
+      <div class="block-title">
+        <div>
+          <button mat-button mat-raised-button (click)="location.back()">
+            Back
+          </button>
+        </div>
+        <span class="title">{{ product.name }}</span>
+        <div></div>
+      </div>
+      <div class="block-content" style="margin-top: 30px">
+        <div class="row">
+          <ng-container *ngFor="let image of product.image">
+            <div style="width: 200px">
+              <img class="w-100" [src]="image" />
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 32px;
+        "
+      >
+        <button
+          style="margin-left: 24px; user-select: none"
+          mat-button
+          mat-raised-button
+          color="accent"
+          (click)="order()"
+        >
+          Thêm
+        </button>
+      </div>
+    </div>
   </div>
 </div>

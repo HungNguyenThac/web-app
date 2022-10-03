@@ -1,38 +1,51 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
 import { ICategory } from "@app/fake_data/category";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { pluck, switchMap } from "rxjs";
-import { CommonModule } from "@angular/common";
+import { pluck, Subscription, switchMap } from "rxjs";
+import { CommonModule, Location } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
-import { ProductsLv2Service } from "@app/pages/products-lv2/services/products-lv2.service";
+import { MenuLv2Service } from "@app/pages/menu-lv2/services/menu-lv2.service";
 
 @Component({
-  selector: "app-products-lv2-lv2",
+  selector: "app-menu-lv2-lv2",
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: "./products-lv2.component.html",
+  templateUrl: "./menu-lv2.component.html",
   styles: [],
   imports: [RouterModule, CommonModule, MatButtonModule],
-  providers: [ProductsLv2Service],
+  providers: [MenuLv2Service],
 })
-export class ProductsLv2Component implements OnInit {
-  data: ICategory;
+export class MenuLv2Component implements OnInit, OnDestroy {
+  subManager = new Subscription();
+  category: ICategory;
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private productSv: ProductsLv2Service,
-    private router: Router
+    private _activatedRoute: ActivatedRoute,
+    private _productSv: MenuLv2Service,
+    private _router: Router,
+    public location: Location
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(
-        pluck("products-lv2-lv2"),
-        switchMap((rs) => this.productSv.getSubsCategory(rs))
-      )
-      .subscribe((rs) => (this.data = rs));
+    this.subManager.add(
+      this._activatedRoute.params
+        .pipe(
+          pluck("slug"),
+          switchMap((rs) => this._productSv.getSubsCategory(rs))
+        )
+        .subscribe((rs) => (this.category = rs))
+    );
   }
 
-  switchToDetail(url: string) {
-    this.router.navigate([this.data.url + "/" + url]);
+  switchToMenuLv3(url: string) {
+    this._router.navigate([this.category.url + "/" + url]);
+  }
+
+  ngOnDestroy() {
+    this.subManager.unsubscribe();
   }
 }

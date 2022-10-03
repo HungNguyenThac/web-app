@@ -3,14 +3,16 @@
     <div class="block">
       <div class="block-title">
         <div>
-          <button mat-button mat-raised-button>Back</button>
+          <button mat-button mat-raised-button (click)="location.back()">
+            Back
+          </button>
         </div>
         <span class="title">Vui lòng chọn loại sản phẩm</span>
         <div></div>
       </div>
       <div class="block-content">
         <div class="row">
-          <ng-container *ngFor="let item of data.subsCategory">
+          <ng-container *ngFor="let item of productList">
             <div class="col-6">
               <div class="item" (click)="switchToDetail(item.url)">
                 <h2>{{ item.name }}</h2>

@@ -4,7 +4,7 @@ import { filter, Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 
 @Injectable()
-export class ProductsLv2Service implements OnInit {
+export class MenuLv2Service implements OnInit {
   category: Observable<ICategory[]> = of(category);
 
   constructor() {}

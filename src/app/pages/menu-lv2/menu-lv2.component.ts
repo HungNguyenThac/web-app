@@ -42,7 +42,7 @@ export class MenuLv2Component implements OnInit, OnDestroy {
   }
 
   switchToMenuLv3(url: string) {
-    this._router.navigate([this.category.url + "/" + url]);
+    this._router.navigate([this.category.url + "/" + url]).then();
   }
 
   ngOnDestroy() {

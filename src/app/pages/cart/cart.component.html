@@ -1,1 +1,26 @@
-<p>cart works!</p>
+<div
+  id="cart-wrapper"
+  class="page-wrapper"
+  style="max-width: 100%; width: 100%; overflow: hidden"
+>
+  <div class="page">
+    <div class="page-title" style="overflow: hidden">
+      <div>
+        <button mat-button mat-raised-button (click)="location.back()">
+          Back
+        </button>
+      </div>
+      <span
+        style="
+          font-size: 24px;
+          text-align: center;
+          display: block;
+          width: 100%;
+          padding: 12px;
+        "
+        >Giỏ hàng của bạn</span
+      >
+    </div>
+    <div class="page-content"></div>
+  </div>
+</div>

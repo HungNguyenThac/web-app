@@ -1,3 +1,23 @@
-<div id="header-wrapper">
-  <h1>header</h1>
+<div
+  id="header-wrapper"
+  style="
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  "
+>
+  <span [hidden]="isShowBarIcon" (click)="toggleSidebar()"
+    ><fa-icon
+      style="font-size: 24px; cursor: pointer"
+      [icon]="barIcon"
+    ></fa-icon
+  ></span>
+  <span [hidden]="!isShowBarIcon"></span>
+  <span (click)="switchToCartPage()"
+    ><fa-icon
+      style="font-size: 24px; cursor: pointer"
+      [icon]="cartIcon"
+    ></fa-icon
+  ></span>
 </div>

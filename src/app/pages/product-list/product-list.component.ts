@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ProductListService } from "@app/pages/product-list/services/product-list.service";
 import { CommonModule, Location } from "@angular/common";
@@ -13,7 +8,7 @@ import { ISubsCategory, Product } from "@app/fake_data/category";
 import { Observable, pluck, switchMap } from "rxjs";
 import { CartService } from "@app/pages/cart/services/cart.service";
 import { IFood, IFruit } from "@app/fake_data";
-import { map, tap } from "rxjs/operators";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-product-list",
@@ -32,8 +27,7 @@ export class ProductListComponent implements OnInit {
     private _router: Router,
     public _productListSv: ProductListService,
     public location: Location,
-    public cartService: CartService,
-    private cdr: ChangeDetectorRef
+    public cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +42,7 @@ export class ProductListComponent implements OnInit {
     this.productList = this._productListSv.getProductListByParam(param);
   }
 
-  switchToDetail(item: IDrink | IFood | IFruit) {
+  switchToDetail(item: Product) {
     this._router
       .navigate([
         item.category_url + "/" + item.subCategory_url + "/" + item.url,

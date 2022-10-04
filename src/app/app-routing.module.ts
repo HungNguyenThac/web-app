@@ -16,6 +16,12 @@ export const routes: Routes = [
           import("./pages/home/home.component").then((c) => c.HomeComponent),
       },
       {
+        path: "cart",
+        pathMatch: "full",
+        loadComponent: () =>
+          import("./pages/cart/cart.component").then((c) => c.CartComponent),
+      },
+      {
         path: ":slug",
         loadChildren: () =>
           import("./pages/menu-lv2/menu-lv2.routing").then(

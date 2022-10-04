@@ -7,7 +7,11 @@
       align-items: center;
     "
   >
-    <div>Số lượng đã chọn: {{ cartService.getQuantity() | async }}</div>
+    <div>
+      <strong style="font-size: 18px">
+        Số lượng đã chọn: {{ cartService.getQuantity() | async }}
+      </strong>
+    </div>
     <div>
       <button mat-button mat-raised-button color="primary">Đặt món</button>
     </div>

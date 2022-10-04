@@ -11,6 +11,8 @@ import { RouterModule } from "@angular/router";
 import { routerFadeAnimation } from "@core/common/animations/router.animation";
 import { WindowResizeService } from "@core/services/window-resize.service";
 import { config } from "@core/common/constants/config";
+import { BodyService } from "@app/layout/blocks/body/services/body.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-body",
@@ -22,26 +24,23 @@ import { config } from "@core/common/constants/config";
   animations: [routerFadeAnimation],
 })
 export class BodyComponent implements OnInit, AfterViewInit {
+  subManager = new Subscription();
   opened = true;
   hasBackdrop = true;
   sideMode: MatDrawerMode = "over";
 
   constructor(
     public windowResize: WindowResizeService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private bodyService: BodyService
   ) {}
 
   ngOnInit(): void {
-    this.windowResize.windowWidth$.subscribe((rs) => {
-      if (rs > config.BREAK_POINT_TABLET) {
-        ((this.sideMode = "side"), (this.opened = true)),
-          (this.hasBackdrop = false);
-      } else {
-        (this.opened = true),
-          (this.sideMode = "over"),
-          (this.hasBackdrop = true);
-      }
+    this.bodyService.opened.subscribe((rs) => {
+      (this.opened = rs), this.cdr.detectChanges();
     });
+    this.bodyService.hasBackdrop.subscribe((rs) => (this.hasBackdrop = rs));
+    this.bodyService.sideMode.subscribe((rs) => (this.sideMode = rs));
   }
 
   ngAfterViewInit(): void {

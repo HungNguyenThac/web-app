@@ -91,13 +91,13 @@ export const category: ICategory[] = [
       },
       {
         name: "Bún",
-        url: "pho_bo",
+        url: "bun",
         isActive: false,
         id: 24,
       },
       {
         name: "Miến",
-        url: "pho_bo",
+        url: "mien",
         isActive: false,
         id: 25,
       },

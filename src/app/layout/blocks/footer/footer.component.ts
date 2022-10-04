@@ -12,9 +12,7 @@ import { CartService } from "@app/pages/cart/services/cart.service";
   imports: [CommonModule, MatButtonModule],
 })
 export class FooterComponent implements OnInit {
-  constructor(public cartService: CartService) {
-    cartService.itemsSelected.subscribe((rs) => console.log(rs));
-  }
+  constructor(public cartService: CartService) {}
 
   ngOnInit(): void {}
 }

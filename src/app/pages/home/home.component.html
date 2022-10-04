@@ -63,8 +63,16 @@
                     <button
                       mat-button
                       mat-raised-button
+                      style="margin-right: 16px"
+                      (click)="changeItemInCart($event, item, 'remove')"
+                    >
+                      Giảm
+                    </button>
+                    <button
+                      mat-button
+                      mat-raised-button
                       color="primary"
-                      (click)="addItemToCart($event, item)"
+                      (click)="changeItemInCart($event, item)"
                     >
                       Thêm
                     </button>

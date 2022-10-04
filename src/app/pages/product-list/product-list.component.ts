@@ -2,12 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ProductListService } from "@app/pages/product-list/services/product-list.service";
 import { CommonModule, Location } from "@angular/common";
-import { IDrink } from "@app/fake_data/drink_list";
 import { MatButtonModule } from "@angular/material/button";
 import { ISubsCategory, Product } from "@app/fake_data/category";
 import { Observable, pluck, switchMap } from "rxjs";
 import { CartService } from "@app/pages/cart/services/cart.service";
-import { IFood, IFruit } from "@app/fake_data";
 import { tap } from "rxjs/operators";
 
 @Component({
@@ -50,8 +48,11 @@ export class ProductListComponent implements OnInit {
       .then();
   }
 
-  addItemToCart($event: Event, item: Product) {
+  changeItemInCart($event: Event, item: Product, process = "add") {
     $event.stopPropagation();
+    if (process === "remove") {
+      return this.cartService.removeItemInCart(item);
+    }
     this.cartService.addItemToCart(item);
   }
 }

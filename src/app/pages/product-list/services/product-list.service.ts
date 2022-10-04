@@ -7,7 +7,7 @@ import {
   Product,
 } from "@app/fake_data/category";
 import { map } from "rxjs/operators";
-import { drink_list, food_list, fruit_list } from "@app/fake_data";
+import { DataService } from "@app/pages/dataService/data.service";
 
 @Injectable()
 export class ProductListService {
@@ -15,8 +15,8 @@ export class ProductListService {
   subCategory: Observable<ISubsCategory>;
   productList: Observable<Product[]>;
 
-  constructor() {
-    this.productList = of([...drink_list, ...food_list, ...fruit_list]);
+  constructor(private dataService: DataService) {
+    this.productList = dataService.data;
   }
 
   getProductListByParam(param: string) {

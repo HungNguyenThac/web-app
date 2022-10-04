@@ -14,6 +14,7 @@ import { config } from "@core/common/constants/config";
 import { CartService } from "@app/pages/cart/services/cart.service";
 import { ToastrService } from "ngx-toastr";
 import { BodyService } from "@app/layout/blocks/body/services/body.service";
+import { MultiLanguageService } from "@app/share/translate";
 
 @Component({
   standalone: true,
@@ -28,7 +29,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   cartIcon = faCartShopping;
   barIcon = faBarsStaggered;
   isShowBarIcon = false;
-
+  cartQuantity: number;
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -36,7 +37,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
     private cartService: CartService,
     private toastService: ToastrService,
-    private bodyService: BodyService
+    private bodyService: BodyService,
+    private languageService: MultiLanguageService
   ) {}
 
   ngOnInit(): void {
@@ -45,22 +47,19 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         ? (this.isShowBarIcon = true)
         : (this.isShowBarIcon = false)
     );
+    this.cartService.cartQuantity.subscribe((rs) => (this.cartQuantity = rs));
   }
 
   ngAfterViewInit() {
     this.windowResize.windowWidth$.subscribe((rs) => this.cdr.detectChanges());
   }
 
-  test() {
-    this._router.navigate(["auth/sign-in"]).then();
-  }
-
   switchToCartPage() {
-    this.cartService.itemsSelected.subscribe((rs) => {
-      rs.length > 0
-        ? this._router.navigate(["/cart"])
-        : this.toastService.error("Giỏ hàng trống");
-    });
+    if (this.cartQuantity > 0) {
+      this._router.navigate(["/cart"]).then();
+      return;
+    }
+    this.toastService.error(this.languageService.instant("cart.cartEmpty"));
   }
 
   toggleSidebar() {

@@ -37,7 +37,8 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.bodyService.opened.subscribe((rs) => {
-      (this.opened = rs), this.cdr.detectChanges();
+      this.opened = rs;
+      this.cdr.detectChanges();
     });
     this.bodyService.hasBackdrop.subscribe((rs) => (this.hasBackdrop = rs));
     this.bodyService.sideMode.subscribe((rs) => (this.sideMode = rs));

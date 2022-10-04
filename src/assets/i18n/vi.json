@@ -21,5 +21,9 @@
       "foods": "Món ăn",
       "fruits": "Hoa quả"
     }
+  },
+  "cart": {
+    "cartName": "Đây là giỏ hàng của bạn",
+    "cartEmpty": "Giỏ hàng của bạn trống"
   }
 }

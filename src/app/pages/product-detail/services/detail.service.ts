@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { drink_list, IDrink } from "@app/fake_data/drink_list";
-import { BehaviorSubject, filter, Observable, of } from "rxjs";
+import { filter, Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 
 @Injectable({

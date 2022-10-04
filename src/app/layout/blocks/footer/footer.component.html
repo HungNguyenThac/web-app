@@ -7,7 +7,7 @@
       align-items: center;
     "
   >
-    <div>Số lượng đã chọn: {{ detailSv.quantity | async }}</div>
+    <div>Số lượng đã chọn: {{ cartService.getQuantity() | async }}</div>
     <div>
       <button mat-button mat-raised-button color="primary">Đặt món</button>
     </div>

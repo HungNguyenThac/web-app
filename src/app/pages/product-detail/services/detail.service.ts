@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { drink_list, IDrinks } from "@app/fake_data/drink_list";
+import { drink_list, IDrink } from "@app/fake_data/drink_list";
 import { BehaviorSubject, filter, Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 
@@ -7,9 +7,7 @@ import { map } from "rxjs/operators";
   providedIn: "root",
 })
 export class DetailService {
-  private _quantity = new BehaviorSubject(0);
-  public quantity = this._quantity as Observable<number>;
-  fakeDrinks: Observable<IDrinks[]> = of(drink_list);
+  fakeDrinks: Observable<IDrink[]> = of(drink_list);
   constructor() {}
 
   queryProduct(param: string) {
@@ -18,8 +16,5 @@ export class DetailService {
       map((drinks) => drinks.find((drink) => drink.url === param)),
       filter((rs) => !!rs)
     );
-  }
-  addItemToCart() {
-    this._quantity.next(this._quantity.value + 1);
   }
 }

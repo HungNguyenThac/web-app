@@ -26,29 +26,21 @@ body {
 .page {
   color: $text-color-primary;
   padding: 24px;
-  .block {
-    .block-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .title {
-        text-align: center;
-        line-height: 1;
-        font-size: $font-size-title-mobile;
-        font-weight: 700;
-      }
-      border-bottom: 1px solid black;
+  .page-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .title {
+      text-align: center;
+      line-height: 1;
+      font-size: $font-size-title-mobile;
+      font-weight: 700;
+      padding: 12px 0;
     }
-    .block-content {
-    }
+    border-bottom: 1px solid black;
   }
-}
-
-.block-content {
-  .item {
-    border: 1px solid black;
-    height: 200px;
-    cursor: pointer;
+  .page-content {
   }
 }
 

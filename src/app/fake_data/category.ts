@@ -1,9 +1,15 @@
+import { IDrink } from "@app/fake_data/drink_list";
+import { IFood } from "@app/fake_data/food-list";
+import { IFruit } from "@app/fake_data/fruit_list";
+
 export interface ISubsCategory {
   name: string;
   url: string;
   isActive: boolean;
   id: number;
 }
+
+export type Product = IDrink | IFood | IFruit;
 
 export interface ICategory {
   name: string;
@@ -12,7 +18,8 @@ export interface ICategory {
   category: string;
   des?: string;
   isActive: boolean;
-  subsCategory: ISubsCategory[];
+  subsCategory?: ISubsCategory[];
+  productList?: Product[];
 }
 
 export const category: ICategory[] = [
@@ -26,31 +33,31 @@ export const category: ICategory[] = [
     subsCategory: [
       {
         name: "cà phê",
-        url: "/ca_phe",
+        url: "ca_phe",
         isActive: false,
         id: 11,
       },
       {
         name: "trà sữa",
-        url: "/tra_sua",
+        url: "tra_sua",
         isActive: false,
         id: 12,
       },
       {
         name: "trà",
-        url: "/tra",
+        url: "tra",
         isActive: false,
         id: 13,
       },
       {
         name: "sinh tố",
-        url: "/sinh_to",
+        url: "sinh_to",
         isActive: false,
         id: 14,
       },
       {
         name: "nước khoáng",
-        url: "/nuoc_khoang",
+        url: "nuoc_khoang",
         isActive: false,
         id: 15,
       },
@@ -66,38 +73,38 @@ export const category: ICategory[] = [
     subsCategory: [
       {
         name: "Phở",
-        url: "/pho",
+        url: "pho",
         isActive: false,
         id: 21,
       },
       {
         name: "Cơm",
-        url: "/com",
+        url: "com",
         isActive: false,
         id: 22,
       },
       {
         name: "Bánh mỳ",
-        url: "/banh_my",
+        url: "banh_my",
         isActive: false,
         id: 23,
       },
       {
         name: "Bún",
-        url: "/pho_bo",
+        url: "pho_bo",
         isActive: false,
         id: 24,
       },
       {
         name: "Miến",
-        url: "/pho_bo",
+        url: "pho_bo",
         isActive: false,
         id: 25,
       },
     ],
   },
   {
-    name: "rau quả",
+    name: "Rau quả",
     url: "rau_qua",
     category: "fruits",
     des: "danh mục hoa quả",
@@ -106,19 +113,19 @@ export const category: ICategory[] = [
     subsCategory: [
       {
         name: "trái cây",
-        url: "/trai_cay",
+        url: "trai_cay",
         isActive: false,
         id: 31,
       },
       {
         name: "rau xanh",
-        url: "/rau_xanh",
+        url: "rau_xanh",
         isActive: false,
         id: 32,
       },
       {
         name: "sa lát",
-        url: "/sa_lat",
+        url: "sa_lat",
         isActive: false,
         id: 33,
       },

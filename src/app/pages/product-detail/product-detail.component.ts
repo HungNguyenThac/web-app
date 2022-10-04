@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { pluck, Subscription, switchMap } from "rxjs";
 import { DetailService } from "@app/pages/product-detail/services/detail.service";
-import { IDrinks } from "@app/fake_data/drink_list";
 import { CommonModule, Location } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
+import { Product } from "@app/fake_data/category";
+import { CartService } from "@app/pages/cart/services/cart.service";
 
 @Component({
   selector: "app-product-detail",
@@ -16,10 +17,11 @@ import { MatButtonModule } from "@angular/material/button";
 })
 export class ProductDetailComponent implements OnInit {
   subManager = new Subscription();
-  product: IDrinks;
+  product: Product;
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _detailSv: DetailService,
+    public cartService: CartService,
     public location: Location,
     private _router: Router
   ) {}
@@ -33,8 +35,5 @@ export class ProductDetailComponent implements OnInit {
         )
         .subscribe((rs) => (this.product = rs))
     );
-  }
-  order() {
-    this._detailSv.addItemToCart();
   }
 }

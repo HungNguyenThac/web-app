@@ -31,8 +31,8 @@
           style="margin-left: 24px; user-select: none"
           mat-button
           mat-raised-button
-          color="accent"
-          (click)="order()"
+          color="primary"
+          (click)="cartService.addItemToCart(product)"
         >
           Thêm
         </button>

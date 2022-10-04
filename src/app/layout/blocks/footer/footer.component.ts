@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { DetailService } from "@app/pages/product-detail/services/detail.service";
 import { MatButtonModule } from "@angular/material/button";
+import { CartService } from "@app/pages/cart/services/cart.service";
 
 @Component({
   standalone: true,
@@ -12,7 +12,9 @@ import { MatButtonModule } from "@angular/material/button";
   imports: [CommonModule, MatButtonModule],
 })
 export class FooterComponent implements OnInit {
-  constructor(public detailSv: DetailService) {}
+  constructor(public cartService: CartService) {
+    cartService.itemsSelected.subscribe((rs) => console.log(rs));
+  }
 
   ngOnInit(): void {}
 }

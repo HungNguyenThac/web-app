@@ -3,8 +3,7 @@ import { CommonModule } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { RouterModule } from "@angular/router";
 import { category, ICategory, Product } from "@app/fake_data/category";
-import { CartService } from "@app/pages/cart/services/cart.service";
-import { DataService } from "@app/pages/dataService/data.service";
+import { DataService } from "@app/core/services/dataService/data.service";
 
 export interface List {
   [index: number]: Product;
@@ -22,10 +21,7 @@ export class HomeComponent implements OnInit {
   categoryList: ICategory[] = category;
   productList: Product[];
 
-  constructor(
-    public cartService: CartService,
-    private dataService: DataService
-  ) {
+  constructor(private dataService: DataService) {
     dataService.data.subscribe((rs) => (this.productList = rs));
   }
 
@@ -46,8 +42,8 @@ export class HomeComponent implements OnInit {
   changeItemInCart($event: Event, item: Product, process = "add") {
     $event.stopPropagation();
     if (process === "remove") {
-      return this.cartService.removeItemInCart(item);
+      return this.dataService.updateQuantity(item, "remove");
     }
-    this.cartService.addItemToCart(item);
+    this.dataService.updateQuantity(item);
   }
 }

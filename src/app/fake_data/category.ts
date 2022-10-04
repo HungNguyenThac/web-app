@@ -7,6 +7,7 @@ export interface ISubsCategory {
   url: string;
   isActive: boolean;
   id: number;
+  thumbnail: string;
 }
 
 export type Product = IDrink | IFood | IFruit;
@@ -36,30 +37,40 @@ export const category: ICategory[] = [
         url: "ca_phe",
         isActive: false,
         id: 11,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
       },
       {
         name: "trà sữa",
         url: "tra_sua",
         isActive: false,
         id: 12,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
       },
       {
         name: "trà",
         url: "tra",
         isActive: false,
         id: 13,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
       },
       {
         name: "sinh tố",
         url: "sinh_to",
         isActive: false,
         id: 14,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
       },
       {
         name: "nước khoáng",
         url: "nuoc_khoang",
         isActive: false,
         id: 15,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
       },
     ],
   },
@@ -74,6 +85,8 @@ export const category: ICategory[] = [
       {
         name: "Phở",
         url: "pho",
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
         isActive: false,
         id: 21,
       },
@@ -81,11 +94,15 @@ export const category: ICategory[] = [
         name: "Cơm",
         url: "com",
         isActive: false,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
         id: 22,
       },
       {
         name: "Bánh mỳ",
         url: "banh_my",
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
         isActive: false,
         id: 23,
       },
@@ -93,11 +110,15 @@ export const category: ICategory[] = [
         name: "Bún",
         url: "bun",
         isActive: false,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
         id: 24,
       },
       {
         name: "Miến",
         url: "mien",
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
         isActive: false,
         id: 25,
       },
@@ -115,17 +136,23 @@ export const category: ICategory[] = [
         name: "trái cây",
         url: "trai_cay",
         isActive: false,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
         id: 31,
       },
       {
         name: "rau xanh",
         url: "rau_xanh",
         isActive: false,
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
         id: 32,
       },
       {
         name: "sa lát",
         url: "sa_lat",
+        thumbnail:
+          "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/9/19/837524/Giam-Mo.jpg",
         isActive: false,
         id: 33,
       },

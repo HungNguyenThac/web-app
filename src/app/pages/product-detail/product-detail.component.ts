@@ -5,7 +5,8 @@ import { DetailService } from "@app/pages/product-detail/services/detail.service
 import { CommonModule, Location } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { Product } from "@app/fake_data/category";
-import { CartService } from "@app/pages/cart/services/cart.service";
+import { DataService } from "@core/services/dataService/data.service";
+import { map, tap } from "rxjs/operators";
 
 @Component({
   selector: "app-product-detail",
@@ -21,19 +22,21 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _detailSv: DetailService,
-    public cartService: CartService,
+    public dataService: DataService,
     public location: Location,
     private _router: Router
   ) {}
 
   ngOnInit(): void {
-    this.subManager.add(
-      this._activatedRoute.params
-        .pipe(
-          pluck("slug"),
-          switchMap((rs) => this._detailSv.queryProduct(rs))
-        )
-        .subscribe((rs) => (this.product = rs))
-    );
+    this.dataService.data
+      .pipe(
+        switchMap((data) => {
+          return this._activatedRoute.params.pipe(
+            pluck("slug"),
+            map((rs) => data.find((item) => item.url === rs))
+          );
+        })
+      )
+      .subscribe((rs) => (this.product = rs));
   }
 }

@@ -23,7 +23,7 @@
     }
   },
   "cart": {
-    "cartName": "Đây là giỏ hàng của bạn",
-    "cartEmpty": "Giỏ hàng của bạn trống"
+    "cart_name": "Đây là giỏ hàng của bạn",
+    "cart_empty": "Giỏ hàng của bạn trống"
   }
 }

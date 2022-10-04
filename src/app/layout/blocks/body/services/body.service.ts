@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Injectable } from "@angular/core";
-import { WindowResizeService } from "@core/services/window-resize.service";
+import { WindowResizeService } from "@core/services/window-resize/window-resize.service";
 import { BehaviorSubject, Observable } from "rxjs";
 import { MatDrawerMode } from "@angular/material/sidenav";
 import { config } from "@core/common/constants/config";

@@ -9,7 +9,7 @@ import { SidebarComponent } from "@app/layout/blocks/sidebar/sidebar.component";
 import { MatDrawerMode, MatSidenavModule } from "@angular/material/sidenav";
 import { RouterModule } from "@angular/router";
 import { routerFadeAnimation } from "@core/common/animations/router.animation";
-import { WindowResizeService } from "@core/services/window-resize.service";
+import { WindowResizeService } from "@core/services/window-resize/window-resize.service";
 import { config } from "@core/common/constants/config";
 import { BodyService } from "@app/layout/blocks/body/services/body.service";
 import { Subscription } from "rxjs";

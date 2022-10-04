@@ -20,7 +20,7 @@ import {
 } from "rxjs";
 import { config } from "@core/common/constants/config";
 import { ToastrService } from "ngx-toastr";
-import { LoadingService } from "@core/services/loading.service";
+import { LoadingService } from "@core/services/loading/loading.service";
 import { Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { Store } from "@ngrx/store";

@@ -7,7 +7,7 @@ import {
   Product,
 } from "@app/fake_data/category";
 import { map } from "rxjs/operators";
-import { DataService } from "@app/pages/dataService/data.service";
+import { DataService } from "@app/core/services/dataService/data.service";
 
 @Injectable()
 export class ProductListService {

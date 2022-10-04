@@ -15,55 +15,9 @@ export class CartService {
 
   constructor() {}
 
-  addItemToCart(item: Product) {
-    if (!this._itemsSelected.value.length) {
-      item.quantity = 1;
-      this._itemsSelected.next([item]);
-      this.getQuantity();
-      return;
-    }
-    const arrayItemsSelected = this._itemsSelected.value;
-
-    const newCart = this.convertArrayToObject(arrayItemsSelected);
-
-    if (!newCart[item.id]) {
-      item.quantity = 1;
-      this._itemsSelected.next([...arrayItemsSelected, item]);
-      this.getQuantity();
-      return;
-    }
-
-    newCart[item.id].quantity = newCart[item.id].quantity + 1;
-    this._itemsSelected.next([...arrayItemsSelected]);
+  updateCart(itemsSelected: Product[]) {
+    this._itemsSelected.next(itemsSelected);
     this.getQuantity();
-  }
-
-  removeItemInCart(item: Product) {
-    if (!this._itemsSelected.value.length) return;
-
-    const arrayItemsSelected = this._itemsSelected.value;
-
-    const newCart = this.convertArrayToObject(arrayItemsSelected);
-
-    if (newCart[item.id].quantity === 1) {
-      const newValue = arrayItemsSelected.filter(
-        (itemSelected) => itemSelected.id !== item.id
-      );
-      this._itemsSelected.next(newValue);
-      this.getQuantity();
-      return;
-    }
-
-    newCart[item.id].quantity = newCart[item.id].quantity - 1;
-    this._itemsSelected.next([...arrayItemsSelected]);
-    this.getQuantity();
-  }
-
-  convertArrayToObject(arrayItemSelected: Product[]) {
-    return arrayItemSelected.reduce((product, cur) => {
-      product[cur.id] = cur;
-      return product;
-    }, {} as any) as Product[];
   }
 
   getQuantity() {

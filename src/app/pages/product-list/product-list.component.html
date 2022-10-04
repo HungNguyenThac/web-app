@@ -68,6 +68,8 @@
                   <button
                     mat-button
                     mat-raised-button
+                    [disableRipple]="item.quantity < 1"
+                    [style.opacity]="item.quantity < 1 ? 0.4 : 1"
                     style="margin-right: 16px"
                     (click)="changeItemInCart($event, item, 'remove')"
                   >

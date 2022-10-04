@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { data, Product } from "@app/fake_data";
-import { commonUtils } from "@core/utils";
+import { CartService } from "@app/pages/cart/services/cart.service";
 
 @Injectable({
   providedIn: "root",
@@ -9,15 +9,37 @@ import { commonUtils } from "@core/utils";
 export class DataService {
   private _data = new BehaviorSubject<Product[]>(data);
   public data = this._data.asObservable();
-  constructor() {}
 
-  updateData(item: Product, process = "remove") {
+  constructor(private cartService: CartService) {}
+
+  updateQuantity(item: Product, process = "add") {
     const arrayData = this._data.value;
-    const objectData = commonUtils.convertArrayToObjectByID(arrayData);
-    if (process === "add") this.incrementQuantity(arrayData, objectData);
+    const objectData = arrayData.reduce((object, cur) => {
+      object[cur.id] = cur;
+      return object;
+    }, {} as any);
+
+    if (process === "remove") {
+      return this.decrementQuantity(arrayData, item, objectData);
+    }
+    return this.incrementQuantity(arrayData, item, objectData);
   }
 
-  incrementQuantity(array: Product[], object: any) {}
+  incrementQuantity(array: Product[], item: Product, object: any) {
+    object[item.id].quantity = object[item.id].quantity + 1;
+    this._data.next(array);
+    this.cartService.updateCart(
+      array.filter((product) => product.quantity > 0)
+    );
+  }
 
-  decrementQuantity(array: Product[], object: any) {}
+  decrementQuantity(array: Product[], item: Product, object: any) {
+    object[item.id].quantity === 0
+      ? (object[item.id].quantity = 0)
+      : (object[item.id].quantity = object[item.id].quantity - 1);
+    this._data.next(array);
+    this.cartService.updateCart(
+      array.filter((product) => product.quantity > 0)
+    );
+  }
 }

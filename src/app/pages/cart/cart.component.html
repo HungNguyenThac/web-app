@@ -1,26 +1,79 @@
 <div
-  id="cart-wrapper"
+  id="home-wrapper"
   class="page-wrapper"
   style="max-width: 100%; width: 100%; overflow: hidden"
 >
   <div class="page">
-    <div class="page-title" style="overflow: hidden">
-      <div>
-        <button mat-button mat-raised-button (click)="location.back()">
-          Back
-        </button>
-      </div>
-      <span
-        style="
-          font-size: 24px;
-          text-align: center;
-          display: block;
-          width: 100%;
-          padding: 12px;
-        "
-        >Giỏ hàng của bạn</span
-      >
+    <div class="page-title">
+      <button mat-button mat-raised-button (click)="location.back()">
+        Back
+      </button>
+      <span class="title w-100" style="text-align: center; font-size: 24px">
+        Vui lòng chọn sản phẩm
+      </span>
     </div>
-    <div class="page-content"></div>
+    <div
+      class="page-content"
+      style="max-height: 100%; overflow-y: auto; overflow-x: hidden"
+    >
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div
+            *ngFor="let item of cartService.itemsSelected | async"
+            class="item-home w-100"
+            style="
+              overflow: hidden;
+              border-bottom: 1px solid black;
+              margin-bottom: 12px;
+              display: flex;
+              padding: 12px 0;
+              justify-content: space-around;
+              align-items: center;
+              cursor: pointer;
+            "
+            (click)="switchToDetail(item)"
+          >
+            <div class="item-image" style="width: 128px">
+              <img class="w-100" [src]="item.image[0]" [alt]="item.des" />
+            </div>
+            <div class="item-content" style="width: 68%">
+              <div>
+                <span
+                  style="display: block; font-size: 16px; padding-bottom: 12px"
+                >
+                  {{ item.name }}
+                </span>
+                <p>{{ item.des }}</p>
+              </div>
+              <div class="d-flex justify-content-around align-content-center">
+                <strong style="font-size: 18px"
+                  >Số lượng: {{ item.quantity }}</strong
+                >
+                <div>
+                  <button
+                    mat-button
+                    [disableRipple]="item.quantity < 1"
+                    [style.opacity]="item.quantity < 1 ? 0.4 : 1"
+                    mat-raised-button
+                    style="margin-right: 16px"
+                    (click)="changeItemInCart($event, item, 'remove')"
+                  >
+                    Giảm
+                  </button>
+                  <button
+                    mat-button
+                    mat-raised-button
+                    color="primary"
+                    (click)="changeItemInCart($event, item)"
+                  >
+                    Thêm
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

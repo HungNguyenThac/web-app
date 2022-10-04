@@ -32,12 +32,20 @@
         "
       >
         <button
-          style="margin-left: 24px; user-select: none"
           mat-button
           mat-raised-button
-          type="button"
+          style="margin-right: 16px"
+          [disableRipple]="product.quantity < 1"
+          [style.opacity]="product.quantity < 1 ? 0.4 : 1"
+          (click)="dataService.updateQuantity(product, 'remove')"
+        >
+          Giảm
+        </button>
+        <button
+          mat-button
+          mat-raised-button
           color="primary"
-          (click)="cartService.addItemToCart(product)"
+          (click)="dataService.updateQuantity(product)"
         >
           Thêm
         </button>

@@ -62,6 +62,8 @@
                   <div class="d-flex justify-content-end">
                     <button
                       mat-button
+                      [disableRipple]="item.quantity < 1"
+                      [style.opacity]="item.quantity < 1 ? 0.4 : 1"
                       mat-raised-button
                       style="margin-right: 16px"
                       (click)="changeItemInCart($event, item, 'remove')"

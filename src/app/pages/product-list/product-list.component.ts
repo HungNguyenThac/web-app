@@ -5,8 +5,8 @@ import { CommonModule, Location } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { ISubsCategory, Product } from "@app/fake_data/category";
 import { Observable, pluck, switchMap } from "rxjs";
-import { CartService } from "@app/pages/cart/services/cart.service";
 import { tap } from "rxjs/operators";
+import { DataService } from "@core/services/dataService/data.service";
 
 @Component({
   selector: "app-product-list",
@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
     private _router: Router,
     public _productListSv: ProductListService,
     public location: Location,
-    public cartService: CartService
+    private dataService: DataService
   ) {}
 
   ngOnInit(): void {
@@ -51,8 +51,8 @@ export class ProductListComponent implements OnInit {
   changeItemInCart($event: Event, item: Product, process = "add") {
     $event.stopPropagation();
     if (process === "remove") {
-      return this.cartService.removeItemInCart(item);
+      return this.dataService.updateQuantity(item, "remove");
     }
-    this.cartService.addItemToCart(item);
+    this.dataService.updateQuantity(item);
   }
 }

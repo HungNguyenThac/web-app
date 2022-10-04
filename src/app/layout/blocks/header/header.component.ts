@@ -9,7 +9,7 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons/faCartShopping";
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons/faBarsStaggered";
-import { WindowResizeService } from "@core/services/window-resize.service";
+import { WindowResizeService } from "@core/services/window-resize/window-resize.service";
 import { config } from "@core/common/constants/config";
 import { CartService } from "@app/pages/cart/services/cart.service";
 import { ToastrService } from "ngx-toastr";
@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this._router.navigate(["/cart"]).then();
       return;
     }
-    this.toastService.error(this.languageService.instant("cart.cartEmpty"));
+    this.toastService.error(this.languageService.instant("cart.cart_empty"));
   }
 
   toggleSidebar() {

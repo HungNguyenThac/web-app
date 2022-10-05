@@ -16,20 +16,20 @@ export const routes: Routes = [
           import("./pages/home/home.component").then((c) => c.HomeComponent),
       },
       {
-        path: "cart",
+        path: configRoutes.APP_ROUTING.CHILDREN.CART,
         pathMatch: "full",
         loadComponent: () =>
           import("./pages/cart/cart.component").then((c) => c.CartComponent),
       },
       {
-        path: "track_your_order",
+        path: configRoutes.APP_ROUTING.CHILDREN.YOUR_ORDER,
         loadComponent: () =>
           import("./pages/track-order/track-order.component").then(
             (c) => c.TrackOrderComponent
           ),
       },
       {
-        path: ":slug",
+        path: configRoutes.APP_ROUTING.CHILDREN.PARAM,
         loadChildren: () =>
           import("./pages/menu-lv2/menu-lv2.routing").then(
             (r) => r.menuLv2Routing

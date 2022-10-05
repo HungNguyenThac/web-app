@@ -1,4 +1,4 @@
-import { size } from "./drink_list";
+import { sizeList } from "./drink_list";
 
 export interface IFood {
   name: string;
@@ -8,14 +8,18 @@ export interface IFood {
   id: number;
   des: string;
   image: string[];
-  thumbnail?: string;
   prices: number;
-  size?: size[];
+  sizeList: sizeList[] | string[] | number[];
   quantity: number;
-  sale?: number;
+  defaultSize: sizeList | string | number;
   option: string[];
   subCategory_id: number;
   subCategory_url: string;
+
+  thumbnail?: string;
+  sale?: number;
+  sizeSelected?: sizeList | string | number;
+  quantityItemsSelected?: number;
 }
 
 export const food_list: IFood[] = [
@@ -38,8 +42,9 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    defaultSize: "M",
   },
   {
     name: "Phỏ bò tái",
@@ -52,6 +57,7 @@ export const food_list: IFood[] = [
     des: "Cà phê đen, có các size: nhỏ, vừa, lớn",
     quantity: 0,
     option: [],
+    defaultSize: "M",
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -60,7 +66,7 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
   {
@@ -71,6 +77,7 @@ export const food_list: IFood[] = [
     id: 1333333333,
     subCategory_id: 11,
     subCategory_url: "pho",
+    defaultSize: "M",
     des: "Cà phê đen, có các size: nhỏ, vừa, lớn",
     quantity: 0,
     option: [],
@@ -82,7 +89,7 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
   {
@@ -90,6 +97,7 @@ export const food_list: IFood[] = [
     url: "/pho_bo_trung",
     category_url: "do_an",
     category_id: 2,
+    defaultSize: "M",
     subCategory_id: 11,
     subCategory_url: "pho",
     id: 14444444444444444,
@@ -104,7 +112,7 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
   {
@@ -113,6 +121,7 @@ export const food_list: IFood[] = [
     category_url: "do_an",
     subCategory_id: 11,
     subCategory_url: "pho",
+    defaultSize: "M",
     category_id: 2,
     id: 1666666666666666,
     des: "Cà phê đen, có các size: nhỏ, vừa, lớn",
@@ -126,7 +135,7 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
 ];

@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   switchToCartPage() {
     if (this.cartQuantity > 0) {
-      this._router.navigate(["/cart"]).then();
+      this._router.navigate(["/gio_hang"]).then();
       return;
     }
     this.toastService.error(this.languageService.instant("cart.cart_empty"));

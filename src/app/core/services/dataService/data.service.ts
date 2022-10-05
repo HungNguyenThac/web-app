@@ -20,26 +20,26 @@ export class DataService {
     }, {} as any);
 
     if (process === "remove") {
-      return this.decrementQuantity(arrayData, item, objectData);
+      // return this.decrementQuantity(arrayData, item, objectData);
     }
-    return this.incrementQuantity(arrayData, item, objectData);
+    // return this.incrementQuantity(arrayData, item, objectData);
   }
 
-  incrementQuantity(array: Product[], item: Product, object: any) {
-    object[item.id].quantity = object[item.id].quantity + 1;
-    this._data.next(array);
-    this.cartService.updateCart(
-      array.filter((product) => product.quantity > 0)
-    );
-  }
+  // incrementQuantity(array: Product[], item: Product, object: any) {
+  //   object[item.id].quantity = object[item.id].quantity + 1;
+  //   this._data.next(array);
+  //   this.cartService.updateCart(
+  //     array.filter((product) => product.quantity > 0)
+  //   );
+  // }
 
-  decrementQuantity(array: Product[], item: Product, object: any) {
-    object[item.id].quantity === 0
-      ? (object[item.id].quantity = 0)
-      : (object[item.id].quantity = object[item.id].quantity - 1);
-    this._data.next(array);
-    this.cartService.updateCart(
-      array.filter((product) => product.quantity > 0)
-    );
-  }
+  // decrementQuantity(array: Product[], item: Product, object: any) {
+  //   object[item.id].quantity === 0
+  //     ? (object[item.id].quantity = 0)
+  //     : (object[item.id].quantity = object[item.id].quantity - 1);
+  //   this._data.next(array);
+  //   this.cartService.updateCart(
+  //     array.filter((product) => product.quantity > 0)
+  //   );
+  // }
 }

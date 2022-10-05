@@ -1,5 +1,4 @@
 import { Routes } from "@angular/router";
-import { productListRouting } from "@app/pages/product-list/product-list.routing";
 
 export const menuLv2Routing: Routes = [
   {

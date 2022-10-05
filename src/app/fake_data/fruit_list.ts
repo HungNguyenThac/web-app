@@ -1,4 +1,4 @@
-import { size } from "./drink_list";
+import { sizeList } from "./drink_list";
 
 export interface IFruit {
   name: string;
@@ -8,14 +8,18 @@ export interface IFruit {
   id: number;
   des: string;
   image: string[];
-  thumbnail?: string;
   prices: number;
-  size?: size[];
+  sizeList: sizeList[] | string[] | number[];
   quantity: number;
-  sale?: number;
+  defaultSize: sizeList | string | number;
   option: string[];
   subCategory_id: number;
   subCategory_url: string;
+
+  thumbnail?: string;
+  sale?: number;
+  sizeSelected?: sizeList | string | number;
+  quantityItemsSelected?: number;
 }
 
 export const fruit_list: IFruit[] = [
@@ -24,6 +28,7 @@ export const fruit_list: IFruit[] = [
     url: "/tao",
     category_url: "trai_cay",
     category_id: 3,
+    defaultSize: "M",
     id: 1111817687,
     des: "táo, có các size: nhỏ, vừa, lớn",
     quantity: 0,
@@ -38,7 +43,7 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
   {
@@ -46,6 +51,7 @@ export const fruit_list: IFruit[] = [
     url: "/buoi",
     category_url: "trai_cay",
     category_id: 3,
+    defaultSize: "M",
     id: 1111287687,
     subCategory_id: 31,
     subCategory_url: "trai_cay",
@@ -60,7 +66,7 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
   {
@@ -68,6 +74,7 @@ export const fruit_list: IFruit[] = [
     url: "/cam",
     category_url: "trai_cay",
     category_id: 3,
+    defaultSize: "M",
     id: 1131187687,
     subCategory_id: 31,
     subCategory_url: "trai_cay",
@@ -82,7 +89,7 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
   {
@@ -91,6 +98,7 @@ export const fruit_list: IFruit[] = [
     category_url: "trai_cay",
     category_id: 3,
     id: 4111187687,
+    defaultSize: "M",
     subCategory_id: 31,
     subCategory_url: "trai_cay",
     des: "táo, có các size: nhỏ, vừa, lớn",
@@ -104,7 +112,7 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
   {
@@ -116,6 +124,7 @@ export const fruit_list: IFruit[] = [
     des: "táo, có các size: nhỏ, vừa, lớn",
     quantity: 0,
     option: [],
+    defaultSize: "M",
     subCategory_id: 31,
     subCategory_url: "trai_cay",
     image: [
@@ -126,7 +135,7 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    size: ["XS", "S", "M", "L", "XL"],
+    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
   },
 ];

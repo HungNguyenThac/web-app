@@ -31,6 +31,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    border-bottom: 1px solid black;
     .title {
       text-align: center;
       line-height: 1;
@@ -38,10 +39,46 @@ body {
       font-weight: 700;
       padding: 12px 0;
     }
-    border-bottom: 1px solid black;
+    .description {
+    }
   }
   .page-content {
   }
+}
+.block {
+  padding: 0;
+  color: $text-color-primary;
+
+  .block-title {
+    width: 100%;
+    border-bottom: 1px solid black;
+
+    .title {
+      display: block;
+      text-align: center;
+      line-height: 1;
+      font-size: $font-size-title-desk;
+      font-weight: 700;
+      padding: 12px 0;
+    }
+
+    .description {
+      color: $fontPrimary;
+      display: block;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+  .block-content {
+    padding: 12px;
+  }
+}
+
+.block-button {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 @media screen and (min-width: 992px) {

@@ -6,14 +6,12 @@ import { directives } from "@app/share/directives";
 import { pipes } from "@app/share/pipes";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
-import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [...directives, ...pipes],
   imports: [
     MaterialModule,
     CommonModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,

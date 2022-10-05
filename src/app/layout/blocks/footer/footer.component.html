@@ -13,7 +13,17 @@
       </strong>
     </div>
     <div>
-      <button mat-button mat-raised-button color="primary">Đặt món</button>
+      <button
+        style="transition: all 0.25s ease-in-out"
+        [disableRipple]="(cartService.cartQuantity | async) < 1"
+        [style.opacity]="(cartService.cartQuantity | async) < 1 ? 0.4 : 1"
+        mat-button
+        mat-raised-button
+        color="primary"
+        (click)="order()"
+      >
+        Đặt món
+      </button>
     </div>
   </div>
 </div>

@@ -65,7 +65,10 @@
                       [disableRipple]="item.quantity < 1"
                       [style.opacity]="item.quantity < 1 ? 0.4 : 1"
                       mat-raised-button
-                      style="margin-right: 16px"
+                      style="
+                        transition: all 0.25s ease-in-out;
+                        margin-right: 16px;
+                      "
                       (click)="changeItemInCart($event, item, 'remove')"
                     >
                       Giảm

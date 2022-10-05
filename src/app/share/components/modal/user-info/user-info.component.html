@@ -1,1 +1,98 @@
-<p>user-info works!</p>
+<div class="user-info-form">
+  <div class="block">
+    <div class="block-title">
+      <span class="title"> Vui lòng nhập thông tin để đặt hàng </span>
+      <span class="description"> Thông tin càng chi tiết càng tốt </span>
+    </div>
+    <div class="block-content">
+      <form
+        class="form"
+        [formGroup]="userInfoForm"
+        (ngSubmit)="submitForm($event)"
+      >
+        <div class="form-group">
+          <label for="userName" style="margin-right: 23px">Họ và tên:</label>
+          <div class="form-field">
+            <input
+              formControlName="userName"
+              id="userName"
+              type="text"
+              required
+            />
+            <mat-error
+              *ngIf="userInfoForm.get('userName')?.errors?.['required']
+              && userInfoForm.get('userName')?.invalid "
+              >Họ và tên không thể để trống</mat-error
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="userPhone" style="margin-right: 23px"
+            >Số điện thoại:</label
+          >
+          <div class="form-field">
+            <input
+              formControlName="userPhone"
+              id="userPhone"
+              type="text"
+              required
+            />
+            <mat-error
+              *ngIf="
+              userInfoForm.get('userPhone')?.errors?.['required']
+              && userInfoForm.get('userPhone')?.invalid ||
+              userInfoForm.get('userPhone')?.errors?.['phoneInvalid']
+              && userInfoForm.get('userPhone')?.invalid"
+              >Số điện thoại không thể bỏ trống</mat-error
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="userAddress" style="margin-right: 23px">Địa chỉ:</label>
+          <div class="form-field">
+            <input formControlName="userAddress" id="userAddress" type="text" />
+            <mat-error></mat-error>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="userTable" style="margin-right: 23px">Bàn số:</label>
+          <div class="form-field">
+            <select id="userTable" formControlName="userTable">
+              <option value="1">Bàn 1</option>
+              <option value="2">Bàn 2</option>
+              <option value="3">Bàn 3</option>
+            </select>
+            <mat-error
+              *ngIf="userInfoForm.get('userTable')?.errors?.['required']
+              && userInfoForm.get('userTable')?.invalid "
+              >Bàn số() không thể để trống</mat-error
+            >
+          </div>
+        </div>
+        <div class="block-button" style="margin-top: 32px">
+          <button
+            type="button"
+            mat-button
+            mat-raised-button
+            color="warn"
+            (click)="dialogRef.close()"
+          >
+            Huỷ
+          </button>
+          <button
+            mat-button
+            mat-raised-button
+            color="accent"
+            (click)="userInfoForm.reset()"
+          >
+            <span> <fa-icon [icon]="faRotate"></fa-icon></span>
+          </button>
+          <button type="submit" mat-button mat-raised-button color="primary">
+            Đặt món
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

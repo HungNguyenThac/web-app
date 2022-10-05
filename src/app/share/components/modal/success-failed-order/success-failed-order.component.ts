@@ -4,7 +4,7 @@ import {
   Inject,
   OnInit,
 } from "@angular/core";
-import { EnumTypeNotiOrder } from "@core/common/enum";
+import { EnumActionUser, EnumTypeNotiOrder } from "@core/common/enum";
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -21,30 +21,38 @@ import { MatButtonModule } from "@angular/material/button";
   imports: [MatButtonModule, MatDialogModule],
 })
 export class SuccessFailedOrderComponent implements OnInit {
-  typeNotiOder: EnumTypeNotiOrder;
+  typeNotiOrder: EnumTypeNotiOrder;
   constructor(
     public dialogRef: MatDialogRef<SuccessFailedOrderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    if (data) this.typeNotiOder = data.type;
+    if (data) this.typeNotiOrder = data.type;
   }
 
   get notiInfo() {
-    switch (this.typeNotiOder) {
+    switch (this.typeNotiOrder) {
       case EnumTypeNotiOrder.ORDER_SUCCEED:
         return {
           title: "Đặt sản phẩm thành công",
           des: "Đặt sản phẩm thành công",
-          cancel: "Theo dõi đơn hàng",
-          reorder: "Thanh toán luôn",
+
+          buttonSecond: "Theo dõi đơn hàng",
+          actionSecond: EnumActionUser.TRACK_ORDER_STATUS,
+
+          buttonPrimary: "Thanh toán",
+          actionPrimary: EnumActionUser.PAYMENT,
         };
 
       case EnumTypeNotiOrder.ORDER_FAILED:
         return {
           title: "Đặt sản phẩm thất bại",
           des: "Đặt sản phẩm thất bại",
-          cancel: "Huỷ",
-          reorder: "Đặt lại",
+
+          buttonSecond: "Huỷ",
+          actionSecond: EnumActionUser.CANCEL,
+
+          buttonPrimary: "Đặt lại",
+          actionPrimary: EnumActionUser.RE_ORDER,
         };
 
       default:

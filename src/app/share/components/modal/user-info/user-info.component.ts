@@ -19,11 +19,16 @@ import { CommonModule } from "@angular/common";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faRotate } from "@fortawesome/free-solid-svg-icons";
 import { ConfirmComponent } from "@app/share/components/modal/confirm/confirm.component";
-import { EnumTypeConfirm, EnumTypeNotiOrder } from "@core/common/enum";
+import {
+  EnumActionUser,
+  EnumTypeConfirm,
+  EnumTypeNotiOrder,
+} from "@core/common/enum";
 import { delay, filter, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { LoadingService } from "@core/services/loading/loading.service";
 import { SuccessFailedOrderComponent } from "@app/share/components/modal/success-failed-order/success-failed-order.component";
+import { userData } from "@app/fake_data";
 
 @Component({
   selector: "app-user-info",
@@ -61,6 +66,9 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInfoForm.patchValue({
+      userName: userData.userName,
+      userPhone: userData.userPhone,
+      userAddress: userData.userAdress,
       userTable: "1",
     });
   }
@@ -89,30 +97,56 @@ export class UserInfoComponent implements OnInit {
           .pipe(
             delay(1000),
             tap(() => {
-              console.log("hello"), this.loadingService.next(false);
+              this.loadingService.next(false);
             }),
             map(() => Math.random()),
             filter((rs) => !!rs)
           )
           .subscribe((rs) => {
             if (rs > 0.5) {
-              const dialog = this.dialog.open(SuccessFailedOrderComponent, {
-                data: {
-                  type: EnumTypeNotiOrder.ORDER_SUCCEED,
-                },
-              });
-
-              return dialog.afterClosed().subscribe();
+              return this.openNotiSucceed(valueForm);
             }
-            const dialog = this.dialog.open(SuccessFailedOrderComponent, {
-              data: {
-                type: EnumTypeNotiOrder.ORDER_FAILED,
-              },
-            });
-            return dialog.afterClosed().subscribe();
+            return this.openNotiFailed(valueForm);
           });
       }
       return this.loadingService.next(false);
+    });
+  }
+
+  /**
+   * thành công mở openSucceed,
+   * thất bại ở failed
+   *
+   * succeed handle 2 trường hợp action thanh toán và theo dõi đơn hàng
+   *
+   * failed handle trường hợp acion re-order
+   *
+   *
+   */
+
+  openNotiSucceed(valueForm: any) {
+    const dialog = this.dialog.open(SuccessFailedOrderComponent, {
+      data: {
+        type: EnumTypeNotiOrder.ORDER_SUCCEED,
+      },
+    });
+
+    return dialog.afterClosed().subscribe((rs) => {
+      if (rs["action"] === EnumActionUser.PAYMENT) return;
+    });
+  }
+
+  openNotiFailed(valueForm: any) {
+    const dialog = this.dialog.open(SuccessFailedOrderComponent, {
+      data: {
+        type: EnumTypeNotiOrder.ORDER_FAILED,
+      },
+    });
+
+    return dialog.afterClosed().subscribe((rs) => {
+      if (rs["action"] === EnumActionUser.CANCEL) return;
+
+      this.openPrompt(valueForm);
     });
   }
 }

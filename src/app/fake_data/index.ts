@@ -6,5 +6,5 @@ export * from "./category";
 export * from "./drink_list";
 export * from "./fruit_list";
 export * from "./food-list";
-
+export * from "./user.data";
 export const data = [...drink_list, ...fruit_list, ...food_list];

@@ -22,6 +22,13 @@ export const routes: Routes = [
           import("./pages/cart/cart.component").then((c) => c.CartComponent),
       },
       {
+        path: "track_your_order",
+        loadComponent: () =>
+          import("./pages/track-order/track-order.component").then(
+            (c) => c.TrackOrderComponent
+          ),
+      },
+      {
         path: ":slug",
         loadChildren: () =>
           import("./pages/menu-lv2/menu-lv2.routing").then(

@@ -15,18 +15,22 @@
           mat-button
           mat-raised-button
           color="accent"
-          (click)="dialogRef.close()"
+          (click)="dialogRef.close({ action: notiInfo.actionSecond })"
         >
-          {{ notiInfo.cancel }}
+          {{ notiInfo.buttonSecond }}
         </button>
         <button
           type="button"
           mat-button
           mat-raised-button
           color="primary"
-          (click)="dialogRef.close(typeNotiOder)"
+          (click)="
+            dialogRef.close({
+              action: notiInfo.actionPrimary
+            })
+          "
         >
-          {{ notiInfo.reorder }}
+          {{ notiInfo.buttonPrimary }}
         </button>
       </div>
     </div>

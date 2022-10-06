@@ -1,96 +1,103 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Subscription } from "rxjs";
 import { Product } from "@app/fake_data/category";
 import { map } from "rxjs/operators";
-
-export type typeAdd = "default" | "custom";
+import { DataService } from "@core/services/dataService/data.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class CartService {
+  subManager = new Subscription();
   private _itemsSelected = new BehaviorSubject<Product[]>([]);
   public itemsSelected = this._itemsSelected.asObservable();
 
   private _cartQuantity = new BehaviorSubject<number>(0);
   public cartQuantity = this._cartQuantity.asObservable();
 
-  constructor() {}
-
-  /**
-   *------------tăng------------ dựa trên sizeSelected
-   *
-   * nếu sizeSelected = true,
-   * thì kiểm tra sizeSelected === sizeDefault hay không
-   *
-   * nếu bằng ===> thêm sản phẩm như bình thường, tìm trong cart đa có sản phẩm với id này chưa, chưa thì thêm mới,
-   * rồi thì tăng quantity
-   *
-   * không bằng ===> kiểm tra đã có sản phẩm tương tự có cùng id và size chưa, có rồi thì tăng quantity,
-   * chưa có thi tạo mới
-   *
-   *
-   * ---------giảm --------------- dựa trên sizeSelected
-   * sizeSelected = false, tìm trong cart đã có item với id tương tự hay chưa, có rồi thì giảm quantity
-   * sizeSelected = true, tìm trong cart đã có item với id và size tương tự, giảm quantity
-   *
-   *
-   */
-
-  // updateCart(itemsSelected: Product[]) {
-  //   this._itemsSelected.next(itemsSelected);
-  //   this.getQuantity();
-  // }
+  constructor(private dataService: DataService) {}
 
   addItemToCart(item: Product) {
     const value = this._itemsSelected.value;
-    if (!item.sizeSelected) item.sizeSelected = item.defaultSize;
 
-    if (!value.length) {
-      item.quantity++;
-      this._itemsSelected.next([item]);
+    const test = value.filter((i) => i.id === item.id);
+
+    if (test.length === 0) {
+      item.quantityItemsSelected = 1;
+      this._itemsSelected.next([...value, item]);
+      this.dataService.asyncCartToData(this._itemsSelected.value);
+      this.getQuantity();
       return;
     }
 
-    const objectValue = value.reduce((object, cur) => {
-      object[cur.id] = cur;
-      return object;
-    }, {} as any);
+    const test2 = test.find(
+      (i) => JSON.stringify(i.optionSelected) === JSON.stringify(item.optionSelected)
+    );
+    if (test2) {
+      item.quantityItemsSelected = item.quantityItemsSelected + 1;
+      const test3 = value.filter((i) => i.id !== item.id);
+      this._itemsSelected.next([...test3, item]);
+      this.dataService.asyncCartToData(this._itemsSelected.value);
+      this.getQuantity();
+      return;
+    }
+  }
 
-    if (item.sizeSelected === item.defaultSize) {
-      if (objectValue[item.id]) {
-        objectValue[item.id].quantity++;
-        this._itemsSelected.next([...value]);
+  removeItemInCart(item: Product) {
+    console.log(item);
+    const value = this._itemsSelected.value;
+
+    const deleteItem = () => {
+      const test = value.find(
+        (i) =>
+          i.id === item.id &&
+          JSON.stringify(i.optionSelected) === JSON.stringify(item.optionSelected)
+      );
+
+      const test2 = value.filter((i) => {
+        if (i.optionSelected.length > 0) {
+          return (
+            i.id !== test.id &&
+            JSON.stringify(item.optionSelected) !== JSON.stringify(i.optionSelected)
+          );
+        }
+        return i.id !== test.id;
+      });
+
+      if (test && test.quantityItemsSelected === 1) {
+        this._itemsSelected.next(test2);
+        this.dataService.asyncCartToData(this._itemsSelected.value);
+        this.dataService.setQuantity(item);
+        this.getQuantity();
         return;
       }
-      item.quantity++;
-      this._itemsSelected.next([...value, item]);
-      return;
+
+      test.quantityItemsSelected -= 1;
+      this._itemsSelected.next([...test2, test]);
+      this.dataService.asyncCartToData(this._itemsSelected.value);
+      this.getQuantity();
+    };
+
+    if (item.optionSelected.length === 0) {
+      return deleteItem();
     }
-
-    const test = value.find(
-      (i) => i.id === item.id && i.sizeSelected === item.sizeSelected
-    );
-
-    if (test) {
-      objectValue[item.id].quantity++;
-      this._itemsSelected.next([...value]);
-      return;
-    }
-
-    this._itemsSelected.next([...value, item]);
+    deleteItem();
   }
 
   getQuantity() {
-    this.itemsSelected
-      .pipe(
-        map((items) =>
-          items.reduce((quantity, cur) => {
-            quantity = quantity + cur.quantity;
-            return quantity;
-          }, 0)
+    this.subManager.add(
+      this.itemsSelected
+        .pipe(
+          map((items) =>
+            items.reduce((quantity, cur) => {
+              quantity = quantity + cur.quantityItemsSelected;
+              return quantity;
+            }, 0)
+          )
         )
-      )
-      .subscribe((rs) => this._cartQuantity.next(rs));
+        .subscribe((rs) => this._cartQuantity.next(rs))
+    );
+
+    this.subManager.unsubscribe();
   }
 }

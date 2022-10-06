@@ -1,25 +1,23 @@
-import { sizeList } from "./drink_list";
+import { IOption, ISubsOption } from "./drink_list";
 
 export interface IFood {
   name: string;
   url: string;
   category_url: string;
-  category_id: number;
-  id: number;
+  category_id: number | string;
+  id: number | string;
   des: string;
   image: string[];
   prices: number;
-  sizeList: sizeList[] | string[] | number[];
   quantity: number;
-  defaultSize: sizeList | string | number;
-  option: string[];
   subCategory_id: number;
+  option: IOption[];
   subCategory_url: string;
+  quantityItemsSelected: number;
+  optionSelected: ISubsOption[];
 
   thumbnail?: string;
   sale?: number;
-  sizeSelected?: sizeList | string | number;
-  quantityItemsSelected?: number;
 }
 
 export const food_list: IFood[] = [
@@ -33,7 +31,6 @@ export const food_list: IFood[] = [
     subCategory_url: "pho",
     des: "Cà phê đen, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -42,9 +39,26 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
-    defaultSize: "M",
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
+    quantityItemsSelected: 0,
+    optionSelected: [],
   },
   {
     name: "Phỏ bò tái",
@@ -56,8 +70,6 @@ export const food_list: IFood[] = [
     id: 122222222222,
     des: "Cà phê đen, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
-    defaultSize: "M",
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -66,8 +78,26 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Phỏ bò dừ",
@@ -77,10 +107,8 @@ export const food_list: IFood[] = [
     id: 1333333333,
     subCategory_id: 11,
     subCategory_url: "pho",
-    defaultSize: "M",
     des: "Cà phê đen, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -89,21 +117,37 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Phỏ bò trứng",
     url: "/pho_bo_trung",
     category_url: "do_an",
     category_id: 2,
-    defaultSize: "M",
     subCategory_id: 11,
     subCategory_url: "pho",
     id: 14444444444444444,
     des: "Cà phê đen, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -112,8 +156,26 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Phỏ bò huế",
@@ -121,12 +183,10 @@ export const food_list: IFood[] = [
     category_url: "do_an",
     subCategory_id: 11,
     subCategory_url: "pho",
-    defaultSize: "M",
     category_id: 2,
     id: 1666666666666666,
     des: "Cà phê đen, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -135,7 +195,25 @@ export const food_list: IFood[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
 ];

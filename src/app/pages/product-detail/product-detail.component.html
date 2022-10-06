@@ -35,9 +35,9 @@
           mat-button
           mat-raised-button
           style="transition: all 0.25s ease-in-out; margin-right: 16px"
-          [disableRipple]="product.quantity < 1"
-          [style.opacity]="product.quantity < 1 ? 0.4 : 1"
-          (click)="dataService.updateQuantity(product, 'remove')"
+          [disableRipple]="product.quantityItemsSelected < 1"
+          [style.opacity]="product.quantityItemsSelected < 1 ? 0.4 : 1"
+          (click)="cartService.removeItemInCart(product)"
         >
           Giảm
         </button>
@@ -45,7 +45,7 @@
           mat-button
           mat-raised-button
           color="primary"
-          (click)="dataService.updateQuantity(product)"
+          (click)="cartService.addItemToCart(product)"
         >
           Thêm
         </button>

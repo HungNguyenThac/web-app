@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   barIcon = faBarsStaggered;
   isShowBarIcon = false;
   cartQuantity: number;
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -47,7 +48,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         ? (this.isShowBarIcon = true)
         : (this.isShowBarIcon = false)
     );
-    this.cartService.cartQuantity.subscribe((rs) => (this.cartQuantity = rs));
+    this.cartService.cartQuantity.subscribe((rs) => {
+      (this.cartQuantity = rs), this.cdr.detectChanges();
+    });
   }
 
   ngAfterViewInit() {
@@ -55,10 +58,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   switchToCartPage() {
+    console.log(this.cartQuantity);
     if (this.cartQuantity > 0) {
       this._router.navigate(["/gio_hang"]).then();
       return;
     }
+
     this.toastService.error(this.languageService.instant("cart.cart_empty"));
   }
 

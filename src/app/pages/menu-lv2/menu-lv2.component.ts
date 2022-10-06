@@ -63,8 +63,8 @@ export class MenuLv2Component implements OnInit, OnDestroy {
   changeItemInCart($event: Event, item: Product, process = "add") {
     $event.stopPropagation();
     if (process === "remove") {
-      return this.dataService.updateQuantity(item, "remove");
+      // return this.dataService.updateQuantity(item, "remove");
     }
-    this.dataService.updateQuantity(item);
+    // this.dataService.updateQuantity(item);
   }
 }

@@ -72,8 +72,8 @@
                       transition: all 0.25s ease-in-out;
                       margin-right: 16px;
                     "
-                    [disableRipple]="item.quantity < 1"
-                    [style.opacity]="item.quantity < 1 ? 0.4 : 1"
+                    [disableRipple]="item.quantityItemsSelected < 1"
+                    [style.opacity]="item.quantityItemsSelected < 1 ? 0.4 : 1"
                     (click)="changeItemInCart($event, item, 'remove')"
                   >
                     Giảm

@@ -1,24 +1,36 @@
 export type sizeList = "XS" | "S" | "M" | "L" | "XL";
 
+export interface ISubsOption {
+  name: string;
+  value: number | string;
+  id?: number | string;
+}
+
+export interface IOption {
+  name: string;
+  defaultOption: number | string;
+  optionList: number[] | string[];
+  id?: number | string;
+}
+
 export interface IDrink {
   name: string;
   url: string;
   category_url: string;
-  category_id: number;
-  id: number;
+  category_id: number | string;
+  id: number | string;
   des: string;
   image: string[];
   prices: number;
-  sizeList: sizeList[] | string[] | number[];
   quantity: number;
-  defaultSize: sizeList | string | number;
   subCategory_id: number;
+  option: IOption[];
+  optionSelected: ISubsOption[];
   subCategory_url: string;
+  quantityItemsSelected: number;
 
-  thumbnail?: string;
   sale?: number;
-  sizeSelected?: sizeList | string | number;
-  quantityItemsSelected?: number;
+  thumbnail?: string;
 }
 
 export const drink_list: IDrink[] = [
@@ -29,7 +41,6 @@ export const drink_list: IDrink[] = [
     subCategory_url: "ca_phe",
     category_url: "thuc_uong",
     category_id: 1,
-    defaultSize: "M",
     id: 112312,
     des: "Cà phê đen, có các size: M, L, S",
     quantity: 0,
@@ -41,8 +52,26 @@ export const drink_list: IDrink[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
+    quantityItemsSelected: 0,
+    optionSelected: [],
   },
   {
     name: "Cà phê sữa",
@@ -52,7 +81,7 @@ export const drink_list: IDrink[] = [
     subCategory_url: "ca_phe",
     category_id: 1,
     id: 1678678,
-    defaultSize: "M",
+
     des: "Cà phê sữa, có các size: M, L, S",
     quantity: 0,
     image: [
@@ -63,8 +92,26 @@ export const drink_list: IDrink[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
+    quantityItemsSelected: 0,
+    optionSelected: [],
   },
   {
     name: "Cà phê trứng",
@@ -73,7 +120,7 @@ export const drink_list: IDrink[] = [
     subCategory_id: 11,
     subCategory_url: "ca_phe",
     category_id: 1,
-    defaultSize: "M",
+
     id: 1978978,
     des: "Cà phê trung, có các size: M, L, S",
     quantity: 0,
@@ -83,17 +130,35 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Cà phê Ý",
     url: "ca_phe_y",
     category_url: "thuc_uong",
     category_id: 1,
-    defaultSize: "M",
+
     subCategory_id: 11,
     subCategory_url: "ca_phe",
     id: 175676,
@@ -105,10 +170,28 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Cà phê hoa quả",
@@ -117,7 +200,7 @@ export const drink_list: IDrink[] = [
     subCategory_id: 11,
     subCategory_url: "ca_phe",
     category_id: 1,
-    defaultSize: "M",
+
     id: 13453454,
     des: "Cà phê đen, có các size: M, L, S",
     quantity: 0,
@@ -127,10 +210,28 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Cà phê đen",
@@ -139,7 +240,7 @@ export const drink_list: IDrink[] = [
     subCategory_id: 11,
     subCategory_url: "ca_phe",
     category_id: 1,
-    defaultSize: "M",
+
     id: 134534580,
     des: "Cà phê đen, có các size: M, L, S",
     quantity: 0,
@@ -149,10 +250,28 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Trà sữa",
@@ -161,7 +280,7 @@ export const drink_list: IDrink[] = [
     subCategory_id: 12,
     subCategory_url: "tra_sua",
     category_id: 1,
-    defaultSize: "M",
+
     id: 1314534580,
     des: "Trà sữa, có các size: M, L, S",
     quantity: 0,
@@ -171,10 +290,28 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Trà sữa chân trâu",
@@ -183,7 +320,7 @@ export const drink_list: IDrink[] = [
     subCategory_id: 12,
     subCategory_url: "tra_sua",
     category_id: 1,
-    defaultSize: "M",
+
     id: 1345345080,
     des: "Trà sữa chân trâu, có các size: M, L, S",
     quantity: 0,
@@ -193,10 +330,28 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Trà sữa đường đen",
@@ -205,7 +360,7 @@ export const drink_list: IDrink[] = [
     subCategory_id: 12,
     subCategory_url: "tra_sua",
     category_id: 1,
-    defaultSize: "M",
+
     id: 1980,
     des: "Trà sữa đường đen, có các size: M, L, S",
     quantity: 0,
@@ -215,10 +370,28 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Trà sữa thạch dừa",
@@ -227,7 +400,7 @@ export const drink_list: IDrink[] = [
     subCategory_id: 12,
     subCategory_url: "tra_sua",
     category_id: 1,
-    defaultSize: "M",
+
     id: 13453477,
     des: "Trà sữa thạch dừa, có các size: M, L, S",
     quantity: 0,
@@ -237,10 +410,28 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Trà sữa nha đam",
@@ -250,7 +441,7 @@ export const drink_list: IDrink[] = [
     subCategory_url: "tra_sua",
     category_id: 1,
     id: 134534589123,
-    defaultSize: "M",
+
     des: "Trà sữa nha đam, có các size: M, L, S",
     quantity: 0,
     image: [
@@ -259,10 +450,28 @@ export const drink_list: IDrink[] = [
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Trà sữa quất chanh",
@@ -274,16 +483,34 @@ export const drink_list: IDrink[] = [
     id: 1366666,
     des: "Trà sữa quất chanh, có các size: M, L, S",
     quantity: 0,
-    defaultSize: "M",
+
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
       "https://cafedidong.vn/wp-content/uploads/2018/12/1-CAFE-%C4%90EN.jpg",
     ],
     prices: 49000,
+    quantityItemsSelected: 0,
+    optionSelected: [],
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["S", "M", "L", "L", "XL"],
     sale: 0.2,
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
 ];

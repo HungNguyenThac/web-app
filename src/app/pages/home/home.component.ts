@@ -22,10 +22,7 @@ export class HomeComponent implements OnInit {
   categoryList: ICategory[] = category;
   productList: Product[];
 
-  constructor(
-    private dataService: DataService,
-    private cartService: CartService
-  ) {
+  constructor(private dataService: DataService, private cartService: CartService) {
     dataService.data.subscribe((rs) => (this.productList = rs));
   }
 
@@ -46,7 +43,7 @@ export class HomeComponent implements OnInit {
   changeItemInCart($event: Event, item: Product, process = "add") {
     $event.stopPropagation();
     if (process === "remove") {
-      return this.dataService.updateQuantity(item, "remove");
+      return this.cartService.removeItemInCart(item);
     }
     this.cartService.addItemToCart(item);
   }

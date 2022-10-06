@@ -4,9 +4,10 @@ import { ProductListService } from "@app/pages/product-list/services/product-lis
 import { CommonModule, Location } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { ISubsCategory, Product } from "@app/fake_data/category";
-import { Observable, pluck, switchMap } from "rxjs";
+import { Observable, pluck, Subscription, switchMap } from "rxjs";
 import { tap } from "rxjs/operators";
 import { DataService } from "@core/services/dataService/data.service";
+import { CartService } from "@app/pages/cart/services/cart.service";
 
 @Component({
   selector: "app-product-list",
@@ -18,6 +19,7 @@ import { DataService } from "@core/services/dataService/data.service";
   providers: [ProductListService],
 })
 export class ProductListComponent implements OnInit {
+  subManager = new Subscription();
   productList: Observable<Product[]>;
   subCategory: Observable<ISubsCategory>;
   constructor(
@@ -25,7 +27,7 @@ export class ProductListComponent implements OnInit {
     private _router: Router,
     public _productListSv: ProductListService,
     public location: Location,
-    private dataService: DataService
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -51,8 +53,8 @@ export class ProductListComponent implements OnInit {
   changeItemInCart($event: Event, item: Product, process = "add") {
     $event.stopPropagation();
     if (process === "remove") {
-      return this.dataService.updateQuantity(item, "remove");
+      return this.cartService.removeItemInCart(item);
     }
-    this.dataService.updateQuantity(item);
+    return this.cartService.addItemToCart(item);
   }
 }

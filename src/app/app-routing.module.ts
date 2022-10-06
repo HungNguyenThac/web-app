@@ -9,17 +9,22 @@ export const routes: Routes = [
     path: configRoutes.APP_ROUTING.PATH,
     component: MainLayoutComponent,
     title: pagesTitle.HOME,
+    data: {
+      reuse: true,
+    },
     children: [
       {
         path: "",
         loadComponent: () =>
           import("./pages/home/home.component").then((c) => c.HomeComponent),
+        data: { preload: true, delay: false },
       },
       {
         path: configRoutes.APP_ROUTING.CHILDREN.CART,
         pathMatch: "full",
         loadComponent: () =>
           import("./pages/cart/cart.component").then((c) => c.CartComponent),
+        data: { preload: true, delay: false },
       },
       {
         path: configRoutes.APP_ROUTING.CHILDREN.YOUR_ORDER,
@@ -27,6 +32,7 @@ export const routes: Routes = [
           import("./pages/track-order/track-order.component").then(
             (c) => c.TrackOrderComponent
           ),
+        data: { preload: true, delay: false },
       },
       {
         path: configRoutes.APP_ROUTING.CHILDREN.PARAM,
@@ -34,6 +40,7 @@ export const routes: Routes = [
           import("./pages/menu-lv2/menu-lv2.routing").then(
             (r) => r.menuLv2Routing
           ),
+        data: { preload: true, delay: false },
       },
     ],
   },

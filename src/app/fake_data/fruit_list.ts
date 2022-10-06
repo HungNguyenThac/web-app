@@ -1,25 +1,23 @@
-import { sizeList } from "./drink_list";
+import { IOption, ISubsOption } from "./drink_list";
 
 export interface IFruit {
   name: string;
   url: string;
   category_url: string;
-  category_id: number;
-  id: number;
+  category_id: number | string;
+  id: number | string;
   des: string;
   image: string[];
   prices: number;
-  sizeList: sizeList[] | string[] | number[];
   quantity: number;
-  defaultSize: sizeList | string | number;
-  option: string[];
   subCategory_id: number;
+  option: IOption[];
+  optionSelected: ISubsOption[];
   subCategory_url: string;
+  quantityItemsSelected: number;
 
-  thumbnail?: string;
   sale?: number;
-  sizeSelected?: sizeList | string | number;
-  quantityItemsSelected?: number;
+  thumbnail?: string;
 }
 
 export const fruit_list: IFruit[] = [
@@ -28,11 +26,9 @@ export const fruit_list: IFruit[] = [
     url: "/tao",
     category_url: "trai_cay",
     category_id: 3,
-    defaultSize: "M",
     id: 1111817687,
     des: "táo, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
     subCategory_id: 31,
     subCategory_url: "trai_cay",
     image: [
@@ -43,21 +39,37 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Bưởi",
     url: "/buoi",
     category_url: "trai_cay",
     category_id: 3,
-    defaultSize: "M",
     id: 1111287687,
     subCategory_id: 31,
     subCategory_url: "trai_cay",
     des: "táo, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -66,21 +78,37 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Cam",
     url: "/cam",
     category_url: "trai_cay",
     category_id: 3,
-    defaultSize: "M",
     id: 1131187687,
     subCategory_id: 31,
     subCategory_url: "trai_cay",
     des: "táo, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -89,8 +117,26 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Quít",
@@ -98,12 +144,10 @@ export const fruit_list: IFruit[] = [
     category_url: "trai_cay",
     category_id: 3,
     id: 4111187687,
-    defaultSize: "M",
     subCategory_id: 31,
     subCategory_url: "trai_cay",
     des: "táo, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
     image: [
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
       "https://noithatcaphe.vn/images/2022/07/20/ca-phe-den-3.jpg",
@@ -112,8 +156,26 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
   {
     name: "Sầu riêng",
@@ -123,8 +185,6 @@ export const fruit_list: IFruit[] = [
     id: 9111187687,
     des: "táo, có các size: nhỏ, vừa, lớn",
     quantity: 0,
-    option: [],
-    defaultSize: "M",
     subCategory_id: 31,
     subCategory_url: "trai_cay",
     image: [
@@ -135,7 +195,25 @@ export const fruit_list: IFruit[] = [
     prices: 49000,
     thumbnail:
       "https://lepathcoffee.com/wp-content/uploads/2021/12/nen-uong-ca-phe-den-hay-ca-phe-sua.jpg",
-    sizeList: ["XS", "S", "M", "L", "XL"],
     sale: 0.5,
+    quantityItemsSelected: 0,
+    optionSelected: [],
+    option: [
+      {
+        name: "Size",
+        defaultOption: "M",
+        optionList: ["S", "M", "L", "L", "XL"],
+      },
+      {
+        name: "Đá",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+      {
+        name: "Đường",
+        defaultOption: "mặc định",
+        optionList: ["0", "25%", "50%", "75%", "mặc định"],
+      },
+    ],
   },
 ];

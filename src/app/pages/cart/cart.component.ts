@@ -39,13 +39,13 @@ export class CartComponent implements OnInit {
   changeItemInCart($event: Event, item: Product, process = "add") {
     $event.stopPropagation();
     if (process === "remove") {
-      if (item.quantity === 1) {
+      if (item.quantityItemsSelected === 1) {
         return this.confirmDeleteItem(item);
       }
 
-      return this.dataService.updateQuantity(item, "remove");
+      return this.cartService.removeItemInCart(item);
     }
-    return this.dataService.updateQuantity(item);
+    return this.cartService.addItemToCart(item);
   }
 
   confirmDeleteItem(item: Product) {
@@ -57,7 +57,7 @@ export class CartComponent implements OnInit {
     });
     dialog.afterClosed().subscribe((rs) => {
       if (rs === EnumTypeConfirm.CART) {
-        return this.dataService.updateQuantity(item, "remove");
+        // return this.dataService.updateQuantity(item, "remove");
       }
     });
   }

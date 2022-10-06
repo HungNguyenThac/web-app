@@ -22,6 +22,9 @@ export const config = {
   MAT_SNACK_DURATION: 5000,
 
   BREAK_POINT_TABLET: 992,
-
   BREAK_POINT_MOBILE: 576,
+
+  DIALOG_SIZE_XS: "320px",
+  DIALOG_SIZE_MD: "768px",
+  DIALOG_SIZE_LG: "982px",
 } as const;

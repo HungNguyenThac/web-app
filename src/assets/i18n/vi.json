@@ -21,5 +21,28 @@
       "foods": "Món ăn",
       "fruits": "Hoa quả"
     }
+  },
+  "cart": {
+    "cart_name": "Đây là giỏ hàng của bạn",
+    "cart_empty": "Giỏ hàng của bạn trống",
+    "modal_confirm": {
+      "title": "Bạn có chắc muốn xoá sản phẩm",
+      "button_cancel": "Huỷ",
+      "button_approve": "Xác nhận"
+    }
+  },
+  "order": {
+    "user_info": {
+      "title": "Vui lòng nhập thông tin",
+      "user_name": "Họ và tên",
+      "user_phone": "Số điện thoại",
+      "user_table": "Bàn số",
+      "user_address": "Địa chỉ"
+    },
+    "modal_info": {
+      "title": "Xác nhận bạn muốn đặt món",
+      "button_cancel": "Huỷ",
+      "button_approve": "Đặt món"
+    }
   }
 }

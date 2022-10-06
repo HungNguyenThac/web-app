@@ -1,0 +1,6 @@
+export enum EnumActionUser {
+  PAYMENT = "PAYMENT",
+  TRACK_ORDER_STATUS = "TRACK_ORDER_STATUS",
+  RE_ORDER = "RE_ORDER",
+  CANCEL = "CANCEL",
+}

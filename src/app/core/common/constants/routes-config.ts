@@ -3,6 +3,12 @@ export const configRoutes = {
     PATH: "",
     AUTH_ROUTING: "auth",
     NOT_FOUND: "**",
+    CHILDREN: {
+      HOME: "",
+      CART: "gio_hang",
+      YOUR_ORDER: "don_hang",
+      PARAM: ":slug",
+    },
   },
   AUTH_ROUTING: {
     PATH: "",

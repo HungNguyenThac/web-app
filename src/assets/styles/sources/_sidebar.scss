@@ -2,11 +2,12 @@
 #aside-menu-wrapper {
   background-color: white;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   .block-category {
     & .category-title {
       text-align: center;

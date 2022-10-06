@@ -1,3 +1,23 @@
-<div id="footer-wrapper">
-  <h1>footer</h1>
+<div id="footer-wrapper" style="padding: 16px">
+  <div style="height: 100%; display: flex; justify-content: space-between; align-items: center">
+    <div>
+      <strong style="font-size: 18px">
+        Số lượng đã chọn: {{ cartService.cartQuantity | async }}
+      </strong>
+    </div>
+    <div>
+      <button
+        style="transition: all 0.25s ease-in-out"
+        [attr.disabled]="(cartService.cartQuantity | async) < 1 ? true : null"
+        [disableRipple]="(cartService.cartQuantity | async) < 1"
+        [style.opacity]="(cartService.cartQuantity | async) < 1 ? 0.4 : 1"
+        mat-button
+        mat-raised-button
+        color="primary"
+        (click)="order()"
+      >
+        Đặt món
+      </button>
+    </div>
+  </div>
 </div>

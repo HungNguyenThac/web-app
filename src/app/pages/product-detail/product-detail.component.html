@@ -1,0 +1,55 @@
+<div id="home-wrapper" class="page-wrapper">
+  <div class="page">
+    <div class="block">
+      <div class="block-title">
+        <div>
+          <button mat-button mat-raised-button (click)="location.back()">
+            Back
+          </button>
+        </div>
+        <span
+          class="title"
+          style="display: block; text-align: center; font-size: 24px"
+          >{{ product.name }}</span
+        >
+        <div></div>
+      </div>
+      <div class="block-content" style="margin-top: 30px">
+        <div class="row">
+          <ng-container *ngFor="let image of product.image">
+            <div style="width: 200px">
+              <img class="w-100" [src]="image" />
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: end;
+          align-items: center;
+          margin-top: 32px;
+        "
+      >
+        <button
+          mat-button
+          mat-raised-button
+          style="transition: all 0.25s ease-in-out; margin-right: 16px"
+          [disableRipple]="product.quantityItemsSelected < 1"
+          [style.opacity]="product.quantityItemsSelected < 1 ? 0.4 : 1"
+          (click)="cartService.removeItemInCart(product)"
+        >
+          Giảm
+        </button>
+        <button
+          mat-button
+          mat-raised-button
+          color="primary"
+          (click)="cartService.addItemToCart(product)"
+        >
+          Thêm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

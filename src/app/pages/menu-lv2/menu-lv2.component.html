@@ -1,0 +1,37 @@
+<div id="home-wrapper" class="page-wrapper">
+  <div class="page">
+    <div class="page-title">
+      <button mat-button mat-raised-button (click)="location.back()">
+        Back
+      </button>
+      <span class="title w-100" style="text-align: center; font-size: 24px">
+        Vui lòng chọn sản phẩm
+      </span>
+    </div>
+    <div class="block-content">
+      <div class="row g-5 d-flex justify-content-center">
+        <ng-container *ngFor="let item of category.subsCategory">
+          <div class="col-5 item-menulv2">
+            <div
+              style="cursor: pointer"
+              class="item d-flex flex-column"
+              (click)="switchToProductListPage(item.url)"
+            >
+              <div
+                class="w-100 d-flex justify-content-center align-content-center"
+                style="width: 200px"
+              >
+                <img
+                  style="width: 200px"
+                  [src]="item.thumbnail"
+                  [alt]="item.name"
+                />
+              </div>
+              <h2 class="text-center">{{ item.name }}</h2>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

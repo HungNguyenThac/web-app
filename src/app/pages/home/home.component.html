@@ -1,0 +1,72 @@
+<div id="home-wrapper" class="page-wrapper" style="max-width: 100%; width: 100%; overflow: hidden">
+  <div class="page">
+    <div class="page-title" style="overflow: hidden">
+      <span class="title w-100" style="text-align: center; font-size: 24px">
+        Vui lòng chọn sản phẩm
+      </span>
+    </div>
+    <div class="page-content" style="max-height: 100%; overflow-y: scroll">
+      <div class="content-scroll">
+        <div class="row justify-content-center">
+          <ng-container *ngFor="let category of categoryList">
+            <div class="category-title" style="height: 56px">
+              <span
+                style="font-size: 20px; padding: 12px; display: block; text-align: center"
+                class="title"
+                >{{ category.name }}</span
+              >
+            </div>
+            <div class="col-12 col-lg-10" style="border-bottom: 1px solid black">
+              <div
+                *ngFor="let item of category.productList"
+                class="item-home w-100"
+                style="
+                  margin-bottom: 12px;
+                  display: flex;
+                  justify-content: space-around;
+                  align-items: center;
+                  cursor: pointer;
+                "
+                [routerLink]="category.url + '/' + item.subCategory_url + '/' + item.url"
+              >
+                <div class="item-image" style="width: 128px">
+                  <img class="w-100" [src]="item.image[0]" [alt]="item.des" />
+                </div>
+                <div class="item-content" style="width: 68%">
+                  <div>
+                    <span style="display: block; font-size: 16px; padding-bottom: 12px">
+                      {{ item.name }}
+                    </span>
+                    <p>{{ item.des }}</p>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button
+                      mat-button
+                      type="button"
+                      [disableRipple]="item.quantityItemsSelected === 0"
+                      [style.opacity]="item.quantityItemsSelected === 0 ? 0.4 : 1"
+                      mat-raised-button
+                      style="transition: all 0.25s ease-in-out; margin-right: 16px"
+                      (click)="changeItemInCart($event, item, 'remove')"
+                    >
+                      Giảm
+                    </button>
+                    <button
+                      mat-button
+                      type="button"
+                      mat-raised-button
+                      color="primary"
+                      (click)="changeItemInCart($event, item)"
+                    >
+                      Thêm
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

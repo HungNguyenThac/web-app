@@ -4,6 +4,7 @@
     *ngFor="let item of category.subsCategory"
     [class.active]="item.isActive"
     [routerLinkActive]="item.url"
+    [routerLink]="category.url + '/' + item.url"
   >
     <div></div>
     <h6 class="item_name">

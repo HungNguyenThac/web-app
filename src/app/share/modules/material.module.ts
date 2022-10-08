@@ -30,10 +30,20 @@ import { MAT_CHIPS_DEFAULT_OPTIONS, MatChipsModule } from "@angular/material/chi
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatRippleModule } from "@angular/material/core";
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatRippleModule,
+} from "@angular/material/core";
 // Material Popups & Modals
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
-import { MAT_DIALOG_DATA, MatDialogConfig, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogConfig,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 // Material Data tables
@@ -43,9 +53,9 @@ import { MatTableModule } from "@angular/material/table";
 // Material Tree
 import { MatTreeModule } from "@angular/material/tree";
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from "@angular/material-moment-adapter";
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { config } from "@core/common/constants/config";
 import { CustomMatPaginatorIntl } from "@core/common/providers/mat-paginator-custom";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
 
 @NgModule({
   declarations: [],

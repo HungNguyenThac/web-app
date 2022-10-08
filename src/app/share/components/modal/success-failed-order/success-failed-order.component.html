@@ -1,0 +1,38 @@
+<div class="modal-confirm">
+  <div class="block">
+    <div class="block-title">
+      <span class="title">
+        {{ notiInfo.title }}
+      </span>
+      <span class="description">
+        {{ notiInfo?.des }}
+      </span>
+    </div>
+    <div class="block-content">
+      <div class="block-button">
+        <button
+          type="button"
+          mat-button
+          mat-raised-button
+          color="accent"
+          (click)="dialogRef.close({ action: notiInfo.actionSecond })"
+        >
+          {{ notiInfo.buttonSecond }}
+        </button>
+        <button
+          type="button"
+          mat-button
+          mat-raised-button
+          color="primary"
+          (click)="
+            dialogRef.close({
+              action: notiInfo.actionPrimary
+            })
+          "
+        >
+          {{ notiInfo.buttonPrimary }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

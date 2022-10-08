@@ -1,0 +1,21 @@
+<div id="footer-wrapper" style="padding: 16px">
+  <div style="height: 100%; display: flex; justify-content: space-between; align-items: center">
+    <div>
+      <strong style="font-size: 18px">
+        Số lượng đã chọn: {{ cartService.cartQuantity | async }}
+      </strong>
+    </div>
+    <div>
+      <button
+        style="transition: all 0.25s ease-in-out"
+        [disabled]="!(cartService.cartQuantity | async)"
+        mat-button
+        mat-raised-button
+        color="primary"
+        (click)="order()"
+      >
+        Đặt món
+      </button>
+    </div>
+  </div>
+</div>

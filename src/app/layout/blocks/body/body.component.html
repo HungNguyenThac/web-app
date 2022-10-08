@@ -1,0 +1,17 @@
+<div id="body-wrapper">
+  <mat-drawer-container class="sidenav-container" [hasBackdrop]="hasBackdrop">
+    <mat-drawer #drawer class="sidenav" [mode]="sideMode" [(opened)]="opened">
+      <app-sidebar></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content
+      class="sidenav-content"
+      [@routerFadeAnimation]="o.isActivated ? o.activatedRouteData['animation'] : ''"
+    >
+      <div class="page-wrapper">
+        <div class="page">
+          <router-outlet #o="outlet"></router-outlet>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

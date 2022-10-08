@@ -1,0 +1,17 @@
+<div
+  id="header-wrapper"
+  style="padding: 16px; display: flex; justify-content: space-between; align-items: flex-end"
+>
+  <span [hidden]="isShowBarIcon" (click)="toggleSidebar()"
+    ><fa-icon style="font-size: 24px; cursor: pointer" [icon]="barIcon"></fa-icon
+  ></span>
+  <span [hidden]="!isShowBarIcon"></span>
+  <span
+    (click)="switchToCartPage()"
+    [style.opacity]="cartQuantity < 1 ? 0.4 : 1"
+    style="transition: all 0.25s ease-in-out"
+    type="button"
+  >
+    <fa-icon style="font-size: 24px; cursor: pointer" [icon]="cartIcon"></fa-icon>
+  </span>
+</div>

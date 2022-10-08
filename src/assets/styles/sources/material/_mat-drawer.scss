@@ -1,0 +1,25 @@
+@import "../variables";
+mat-drawer-content {
+  overflow: hidden;
+  background-color: $body-bg;
+}
+mat-drawer {
+  width: 50%;
+  min-width: 5%;
+  height: 100%;
+}
+.mat-drawer-side {
+  border: none;
+}
+
+@media screen and (min-width: 992px) {
+  mat-drawer {
+    width: 24%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  mat-drawer {
+    width: 32%;
+  }
+}

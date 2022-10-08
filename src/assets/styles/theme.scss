@@ -1,6 +1,10 @@
-@import "./sources/material";
-@import "./sources/base";
-@import "./sources/typography";
-@import "./sources/variables";
-@import "./sources/reset";
-
+@import "sources/reset";
+@import "sources/typography";
+@import "sources/variables";
+@import "sources/base";
+@import "sources/material/index";
+@import "sources/header";
+@import "sources/footer";
+@import "sources/sidebar";
+@import "sources/modal";
+@import "sources/form";

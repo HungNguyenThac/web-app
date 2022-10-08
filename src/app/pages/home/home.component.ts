@@ -5,7 +5,6 @@ import { RouterModule } from "@angular/router";
 import { category, ICategory, Product } from "@app/fake_data/category";
 import { DataService } from "@app/core/services/dataService/data.service";
 import { CartService } from "@app/pages/cart/services/cart.service";
-import { data } from "@app/fake_data";
 
 export interface List {
   [index: number]: Product;

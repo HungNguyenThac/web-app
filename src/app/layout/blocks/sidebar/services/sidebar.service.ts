@@ -8,7 +8,7 @@ import { category, ICategory } from "@app/fake_data/category";
 export class SidebarService {
   fakeCategory: Observable<ICategory[]> = of<ICategory[]>(category);
 
-  fakeDrinks: Observable<any>;
+  fakeDrinks!: Observable<any>;
 
   constructor() {}
 }

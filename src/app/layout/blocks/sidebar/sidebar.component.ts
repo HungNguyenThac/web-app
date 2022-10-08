@@ -1,10 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import {
-  faAppleWhole,
-  faBowlFood,
-  faChevronRight,
-  faMartiniGlassCitrus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAppleWhole, faBowlFood, faChevronRight, faMartiniGlassCitrus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { TranslateModule } from "@ngx-translate/core";
 import { ICategory } from "@app/fake_data/category";
@@ -31,7 +26,7 @@ import { SubsCategoryComponent } from "@app/layout/blocks/sidebar/component/subs
   ],
 })
 export class SidebarComponent implements OnInit {
-  categoryList: ICategory[];
+  categoryList!: ICategory[];
   drinksIcon = faMartiniGlassCitrus;
   fruitsIcon = faAppleWhole;
   foodsIcon = faBowlFood;
@@ -39,8 +34,6 @@ export class SidebarComponent implements OnInit {
   constructor(private sidebarService: SidebarService) {}
 
   ngOnInit(): void {
-    this.sidebarService.fakeCategory.subscribe(
-      (rs) => (this.categoryList = rs)
-    );
+    this.sidebarService.fakeCategory.subscribe((rs) => (this.categoryList = rs));
   }
 }

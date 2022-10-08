@@ -13,9 +13,11 @@ export class MenuLv2Service implements OnInit {
 
   getSubsCategory(param: string) {
     return this.category.pipe(
-      map((categoryList) =>
-        categoryList.find((category) => category.url === param)
-      ),
+      map((categoryList) => {
+        const test = categoryList.find((category) => category.url === param);
+        if (test) return test;
+        return {} as ICategory;
+      }),
       filter((rs) => !!rs)
     );
   }

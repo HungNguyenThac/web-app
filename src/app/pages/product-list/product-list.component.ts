@@ -19,8 +19,8 @@ import { CartService } from "@app/pages/cart/services/cart.service";
 })
 export class ProductListComponent implements OnInit {
   subManager = new Subscription();
-  productList: Observable<Product[]>;
-  subCategory: Observable<ISubsCategory>;
+  productList!: Observable<Product[]>;
+  subCategory!: Observable<ISubsCategory>;
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,

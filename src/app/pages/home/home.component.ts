@@ -21,7 +21,7 @@ export interface List {
 })
 export class HomeComponent implements OnInit {
   categoryList: ICategory[] = category;
-  productList: Product[];
+  productList!: Product[];
 
   constructor(private dataService: DataService, private cartService: CartService) {
     dataService.data.subscribe((rs) => (this.productList = rs));

@@ -12,11 +12,8 @@ import { MatButtonModule } from "@angular/material/button";
   imports: [MatButtonModule],
 })
 export class ConfirmComponent implements OnInit {
-  confirmType: EnumTypeConfirm;
-  constructor(
-    public dialogRef: MatDialogRef<ConfirmComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
+  confirmType!: EnumTypeConfirm;
+  constructor(public dialogRef: MatDialogRef<ConfirmComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     if (data) this.confirmType = data.type;
   }
 

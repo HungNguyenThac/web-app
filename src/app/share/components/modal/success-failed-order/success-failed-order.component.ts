@@ -12,11 +12,8 @@ import { MatButtonModule } from "@angular/material/button";
   imports: [MatButtonModule, MatDialogModule],
 })
 export class SuccessFailedOrderComponent implements OnInit {
-  typeNotiOrder: EnumTypeNotiOrder;
-  constructor(
-    public dialogRef: MatDialogRef<SuccessFailedOrderComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
+  typeNotiOrder!: EnumTypeNotiOrder;
+  constructor(public dialogRef: MatDialogRef<SuccessFailedOrderComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     if (data) this.typeNotiOrder = data.type;
   }
 

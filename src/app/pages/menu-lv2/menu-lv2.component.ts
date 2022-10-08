@@ -27,13 +27,12 @@ import { DataService } from "@core/services/dataService/data.service";
 })
 export class MenuLv2Component implements OnInit, OnDestroy {
   subManager = new Subscription();
-  category: ICategory;
+  category!: ICategory;
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _productSv: MenuLv2Service,
     private _router: Router,
-    public location: Location,
-    private dataService: DataService
+    public location: Location
   ) {}
 
   ngOnInit(): void {

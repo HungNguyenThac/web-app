@@ -1,4 +1,10 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons/faCartShopping";
@@ -23,7 +29,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   cartIcon = faCartShopping;
   barIcon = faBarsStaggered;
   isShowBarIcon = false;
-  cartQuantity!: number;
+  cartQuantity: number;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -38,7 +44,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.windowResize.windowWidth$.subscribe((rs) =>
-      rs > config.BREAK_POINT_TABLET ? (this.isShowBarIcon = true) : (this.isShowBarIcon = false)
+      rs > config.BREAK_POINT_TABLET
+        ? (this.isShowBarIcon = true)
+        : (this.isShowBarIcon = false)
     );
     this.cartService.cartQuantity.subscribe((rs) => {
       (this.cartQuantity = rs), this.cdr.detectChanges();

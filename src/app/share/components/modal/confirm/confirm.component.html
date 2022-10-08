@@ -5,15 +5,27 @@
         {{ confirmInfo.title }}
       </span>
       <span class="description">
-        {{ confirmInfo.des }}
+        {{ confirmInfo?.des }}
       </span>
     </div>
     <div class="block-content">
       <div class="block-button">
-        <button type="button" mat-button mat-raised-button color="accent" (click)="dialogRef.close()">
+        <button
+          type="button"
+          mat-button
+          mat-raised-button
+          color="accent"
+          (click)="dialogRef.close()"
+        >
           {{ confirmInfo.cancel }}
         </button>
-        <button type="button" mat-button mat-raised-button color="primary" (click)="dialogRef.close(confirmType)">
+        <button
+          type="button"
+          mat-button
+          mat-raised-button
+          color="primary"
+          (click)="dialogRef.close(confirmType)"
+        >
           {{ confirmInfo.approve }}
         </button>
       </div>

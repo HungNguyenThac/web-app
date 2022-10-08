@@ -7,6 +7,7 @@ import { DataService } from "@app/core/services/dataService/data.service";
 @Injectable()
 export class ProductListService {
   categoryList: Observable<ICategory[]> = of(category);
+  subCategory: Observable<ISubsCategory>;
   productList: Observable<Product[]>;
 
   constructor(private dataService: DataService) {
@@ -14,26 +15,20 @@ export class ProductListService {
   }
 
   getProductListByParam(param: string) {
-    return this.productList.pipe(map((rs) => rs.filter((product) => product.subCategory_url === param)));
+    return this.productList.pipe(
+      map((rs) => rs.filter((product) => product.subCategory_url === param))
+    );
   }
 
   getSubCategory(param: string) {
     return this.categoryList.pipe(
       map((categoryList) =>
         categoryList.reduce((subs, cur) => {
-          if (cur.subsCategory) {
-            subs = [...subs, ...cur.subsCategory];
-            return subs;
-          }
+          subs = [...subs, ...cur.subsCategory];
           return subs;
-        }, [] as ISubsCategory[])
+        }, [])
       ),
-      map((subs) => {
-        const test = subs.find((sub) => sub.url === param);
-        if (test) return test;
-
-        return {} as ISubsCategory;
-      }),
+      map((subs) => subs.find((sub) => sub.url === param)),
       filter((rs) => !!rs)
     );
   }

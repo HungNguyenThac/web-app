@@ -19,7 +19,7 @@ import { CartService } from "@app/pages/cart/services/cart.service";
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
-  product!: Product;
+  product: Product;
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _detailSv: DetailService,
@@ -36,11 +36,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           switchMap((data) => {
             return this._activatedRoute.params.pipe(
               pluck("slug"),
-              map((rs) => {
-                const test = data.find((item) => item.url === rs);
-                if (test) return test;
-                return {} as Product;
-              })
+              map((rs) => data.find((item) => item.url === rs))
             );
           })
         )

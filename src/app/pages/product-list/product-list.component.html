@@ -1,23 +1,18 @@
 <div id="home-wrapper" style="max-width: 100%; width: 100%; overflow: hidden">
   <div class="page-title">
     <button mat-button mat-raised-button (click)="location.back()">Back</button>
-    <span class="title w-100" style="text-align: center; font-size: 24px">
-      Vui lòng chọn sản phẩm
-    </span>
+    <span class="title w-100" style="text-align: center; font-size: 24px"> Vui lòng chọn sản phẩm </span>
   </div>
   <div class="page-content" style="max-height: 100%; overflow-y: scroll; overflow-x: hidden">
     <div class="content-scroll">
       <div class="row justify-content-center">
         <div class="category-title" style="height: 56px">
-          <span
-            style="font-size: 20px; padding: 12px; display: block; text-align: center"
-            class="title"
-          >
+          <span style="font-size: 20px; padding: 12px; display: block; text-align: center" class="title">
             {{ (subCategory | async)?.name }}
           </span>
         </div>
         <div
-          *ngIf="(productList | async).length > 0; else product"
+          *ngIf="(productList | async)!.length > 0; else product"
           class="col-12 col-lg-10"
           style="border-bottom: 1px solid black"
         >
@@ -52,12 +47,7 @@
                 >
                   Giảm
                 </button>
-                <button
-                  mat-button
-                  mat-raised-button
-                  color="primary"
-                  (click)="changeItemInCart($event, item)"
-                >
+                <button mat-button mat-raised-button color="primary" (click)="changeItemInCart($event, item)">
                   Thêm
                 </button>
               </div>

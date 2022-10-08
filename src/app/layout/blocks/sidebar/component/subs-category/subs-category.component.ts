@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
 import { ICategory } from "@app/fake_data/category";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
@@ -17,7 +12,7 @@ import { CommonModule } from "@angular/common";
   imports: [RouterModule, CommonModule],
 })
 export class SubsCategoryComponent implements OnInit {
-  @Input() category: ICategory;
+  @Input() category!: ICategory;
   constructor() {}
 
   ngOnInit(): void {}

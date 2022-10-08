@@ -17,6 +17,7 @@ export class SuccessFailedOrderComponent implements OnInit {
     public dialogRef: MatDialogRef<SuccessFailedOrderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.typeNotiOrder = EnumTypeNotiOrder.ORDER_SUCCEED
     if (data) this.typeNotiOrder = data.type;
   }
 

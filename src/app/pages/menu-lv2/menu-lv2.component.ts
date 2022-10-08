@@ -27,13 +27,13 @@ import { DataService } from "@core/services/dataService/data.service";
 })
 export class MenuLv2Component implements OnInit, OnDestroy {
   subManager = new Subscription();
-  category: ICategory;
+  category!: ICategory;
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _productSv: MenuLv2Service,
     private _router: Router,
-    public location: Location,
-    private dataService: DataService
+    public location: Location
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class MenuLv2Component implements OnInit, OnDestroy {
   }
 
   switchToProductListPage(url: string) {
-    this._router.navigate([this.category.url + "/" + url]).then();
+    if (this.category) this._router.navigate([this.category.url + "/" + url]).then();
   }
 
   ngOnDestroy() {

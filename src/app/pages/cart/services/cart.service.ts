@@ -30,9 +30,7 @@ export class CartService {
       return;
     }
 
-    const test2 = test.find(
-      (i) => JSON.stringify(i.optionSelected) === JSON.stringify(item.optionSelected)
-    );
+    const test2 = test.find((i) => JSON.stringify(i.optionSelected) === JSON.stringify(item.optionSelected));
     if (test2) {
       item.quantityItemsSelected = item.quantityItemsSelected + 1;
       const test3 = value.filter((i) => i.id !== item.id);
@@ -44,22 +42,18 @@ export class CartService {
   }
 
   decreaseItemInCart(item: Product) {
-    console.log(item);
     const value = this._itemsSelected.value;
 
     const deleteItem = () => {
       const test = value.find(
-        (i) =>
-          i.id === item.id &&
-          JSON.stringify(i.optionSelected) === JSON.stringify(item.optionSelected)
+        (i) => i.id === item.id && JSON.stringify(i.optionSelected) === JSON.stringify(item.optionSelected)
       );
+
+      if (!test) return;
 
       const test2 = value.filter((i) => {
         if (i.optionSelected.length > 0) {
-          return (
-            i.id !== test.id &&
-            JSON.stringify(item.optionSelected) !== JSON.stringify(i.optionSelected)
-          );
+          return i.id !== test.id && JSON.stringify(item.optionSelected) !== JSON.stringify(i.optionSelected);
         }
         return i.id !== test.id;
       });

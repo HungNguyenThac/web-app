@@ -17,7 +17,7 @@ import { MatButtonModule } from "@angular/material/button";
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = "Tada Menu";
-  disabled: true;
+  disabled = true
   private _subManager = new Subscription();
   private _routerState: Observable<AppState>;
 

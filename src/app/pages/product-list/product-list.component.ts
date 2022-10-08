@@ -19,8 +19,8 @@ import { CartService } from "@app/pages/cart/services/cart.service";
 })
 export class ProductListComponent implements OnInit {
   subManager = new Subscription();
-  productList: Observable<Product[]>;
-  subCategory: Observable<ISubsCategory>;
+  productList?: Observable<Product[]>;
+  subCategory?: Observable<ISubsCategory>;
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -33,7 +33,11 @@ export class ProductListComponent implements OnInit {
     this.subCategory = this._activatedRoute.params.pipe(
       pluck("slug"),
       switchMap((rs) => this._productListSv.getSubCategory(rs)),
-      tap((rs) => this.getProductList(rs.url))
+      tap((rs) => {
+        if (rs) {
+          this.getProductList(rs.url);
+        }
+      })
     );
   }
 
